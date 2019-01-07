@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Agent.Tests", "test\Monyk.Agent.Tests\Monyk.Agent.Tests.csproj", "{2B967932-98E2-4021-AA65-7C446670B98E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Agent", "src\Monyk.Agent\Monyk.Agent.csproj", "{D2033E27-0D48-4155-8E13-312EE0EF8763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|x64.Build.0 = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|x64.ActiveCfg = Release|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|x64.Build.0 = Release|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B967932-98E2-4021-AA65-7C446670B98E}.Release|x86.Build.0 = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|x64.Build.0 = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Debug|x86.Build.0 = Debug|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|x64.ActiveCfg = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|x64.Build.0 = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2033E27-0D48-4155-8E13-312EE0EF8763}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4368D3FD-3189-4AD7-9801-CF327254BF4E}
+	EndGlobalSection
+EndGlobal

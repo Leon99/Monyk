@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Monyk.Agent": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
