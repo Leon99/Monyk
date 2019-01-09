@@ -16,7 +16,8 @@ namespace Monyk.Manager
 {
     public class Startup
     {
-        private MonykSettings _appSettings;
+        private const string SqliteFileName = "monyk.db";
+        private readonly MonykSettings _appSettings;
 
         public Startup(IConfiguration configuration)
         {
@@ -60,7 +61,7 @@ namespace Monyk.Manager
                         .BuildServiceProvider();
                     break;
                 case DatabaseType.Sqlite:
-                    services.AddDbContext<MonykDbContext>(options => options.UseSqlite($"Data Source=monyk.db"));
+                    services.AddDbContext<MonykDbContext>(options => options.UseSqlite($"Data Source=" + SqliteFileName));
                     break;
                 default:
                     throw new ConfigurationErrorsException(
@@ -75,14 +76,18 @@ namespace Monyk.Manager
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.ContentRootPath.EndsWith("IISExpress")) // Ensure consistent current directory
+            {
+                Directory.SetCurrentDirectory(env.ContentRootPath);
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                using (var serviceScope = app.ApplicationServices
-                    .GetRequiredService<IServiceScopeFactory>().CreateScope())
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    var db = serviceScope.ServiceProvider.GetService<MonykDbContext>();
-                    SeedDataForDevelopment(db, env.ContentRootPath, app.ApplicationServices.GetService<MonitorScheduler>());
+                    SeedDataForDevelopment(
+                        serviceScope.ServiceProvider.GetService<MonykDbContext>(), 
+                        app.ApplicationServices.GetService<MonitorScheduler>());
                 }
             }
             else
@@ -97,12 +102,14 @@ namespace Monyk.Manager
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monyk API"); });
         }
 
-        private void SeedDataForDevelopment(MonykDbContext db, string rootPath, MonitorScheduler scheduler)
+        private void SeedDataForDevelopment(MonykDbContext db, MonitorScheduler scheduler)
         {
-            Directory.SetCurrentDirectory(rootPath);
             if (_appSettings.Database == DatabaseType.Sqlite)
             {
-                File.CreateText("monyk.db").Close();
+                if (!File.Exists(SqliteFileName))
+                {
+                    File.CreateText(SqliteFileName).Close();
+                }
             }
 
             db.Database.EnsureDeleted();
