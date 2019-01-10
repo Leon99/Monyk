@@ -11,10 +11,12 @@ namespace Monyk.Manager.Services
     public class MonitorManager
     {
         private readonly MonykDbContext _db;
+        private readonly MonitorScheduler _scheduler;
 
-        public MonitorManager(MonykDbContext db)
+        public MonitorManager(MonykDbContext db, MonitorScheduler scheduler)
         {
             _db = db;
+            _scheduler = scheduler;
         }
 
         public async Task<IEnumerable<MonitorEntity>> GetMonitorsAsReadOnly()
@@ -62,6 +64,7 @@ namespace Monyk.Manager.Services
         {
             _db.Monitors.Add(monitorEntity);
             await _db.SaveChangesAsync();
+            _scheduler.AddSchedule(monitorEntity);
         }
 
         public async Task<bool> TryDeleteMonitor(Guid id)
@@ -71,6 +74,7 @@ namespace Monyk.Manager.Services
             {
                 return false;
             }
+            _scheduler.DeleteSchedule(id);
 
             _db.Monitors.Remove(monitor);
             await _db.SaveChangesAsync();

@@ -1,33 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Diagnostics;
 using Monyk.Manager.Db.Entities;
 
 namespace Monyk.Manager.Services
 {
-
-    public class ScheduleTimer
-    {
-
-    }
     public class MonitorScheduler
     {
-        private readonly Dictionary<Guid, (Timer, MonitorEntity)> _schedules = new Dictionary<Guid, (Timer, MonitorEntity)>();
+        private readonly TimerFactory _timerFactory;
 
-        private void TimerCallback(object state)
+        public MonitorScheduler(TimerFactory timerFactory)
         {
-            var monitor = (MonitorEntity)state;
+            _timerFactory = timerFactory;
         }
+
+        private readonly Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)> _schedules = new Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)>();
 
         public void AddSchedule(MonitorEntity monitor)
         {
-            var timer = new Timer(TimerCallback, monitor, TimeSpan.Zero, TimeSpan.FromSeconds(monitor.Interval));
+            var timer = _timerFactory.Create<MonitorEntity>(TimeSpan.FromSeconds(monitor.Interval), monitor, TimerElapsedHandler);
             var scheduleData = (timer, monitor);
             _schedules.Add(monitor.Id, scheduleData);
+            timer.Start();
+        }
+
+        private void TimerElapsedHandler(MonitorEntity monitor)
+        {
+            PostValidationRequest(monitor);
+        }
+
+        private void PostValidationRequest(MonitorEntity monitor)
+        {
+            Debug.WriteLine($"Requesting {monitor.Id}...");
         }
 
         public void DeleteSchedule(Guid id)
         {
+            _schedules[id].Item1.Stop();
             _schedules.Remove(id);
         }
     }

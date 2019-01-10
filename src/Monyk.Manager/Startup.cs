@@ -70,6 +70,7 @@ namespace Monyk.Manager
 
             services.AddScoped<MonitorManager>();
             services.AddSingleton<MonitorScheduler>();
+            services.AddSingleton<TimerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
