@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Monyk.Manager.Db;
 using Monyk.Manager.Db.Entities;
+using Monyk.Manager.Models;
 using Monyk.Manager.Services;
 using Swashbuckle.AspNetCore.Swagger;
 

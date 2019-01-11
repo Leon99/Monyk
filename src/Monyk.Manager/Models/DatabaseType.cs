@@ -1,4 +1,4 @@
-﻿namespace Monyk.Manager
+﻿namespace Monyk.Manager.Models
 {
     public enum DatabaseType
     {

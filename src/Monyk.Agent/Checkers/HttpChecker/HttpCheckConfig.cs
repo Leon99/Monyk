@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Monyk.Agent.Probes.HttpProbe
+namespace Monyk.Agent.Checkers.HttpChecker
 {
-    public class HttpProbeConfig
+    public class HttpCheckConfig
     {
         public Uri Url { get; set; }
     }

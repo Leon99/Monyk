@@ -1,6 +1,6 @@
-﻿namespace Monyk.Agent.Probes
+﻿namespace Monyk.Agent.Checkers
 {
-    public enum VerificationResultStatus
+    public enum CheckResultStatus
     {
         Success,
         Indeterminate,

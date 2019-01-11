@@ -4,20 +4,20 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Monyk.Agent.Probes;
-using Monyk.Agent.Probes.HttpProbe;
+using Monyk.Agent.Checkers;
+using Monyk.Agent.Checkers.HttpChecker;
 using Moq;
 using Moq.Protected;
 using Xunit;
 
 namespace Monyk.Agent.Tests
 {
-    public class HttpProbeTests
+    public class HttpCheckerTests
     {
         [Theory]
-        [InlineData(HttpStatusCode.OK, VerificationResultStatus.Success, null)]
-        [InlineData(HttpStatusCode.BadRequest, VerificationResultStatus.Failure, null)]
-        public async void RunCheck_BasicScenarios(HttpStatusCode httpStatus, VerificationResultStatus resultStatus, string resultMessage)
+        [InlineData(HttpStatusCode.OK, CheckResultStatus.Success, null)]
+        [InlineData(HttpStatusCode.BadRequest, CheckResultStatus.Failure, null)]
+        public async void RunCheck_BasicScenarios(HttpStatusCode httpStatus, CheckResultStatus resultStatus, string resultMessage)
         {
             // Arrange
             var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
@@ -34,20 +34,20 @@ namespace Monyk.Agent.Tests
                 })
                 .Verifiable();
             var httpClientFactory = new FakeHttpClientFactory(handlerMock.Object);
-            var probe = new HttpProbe(httpClientFactory);
-            var probeConfig = new HttpProbeConfig
+            var checker = new HttpChecker(httpClientFactory);
+            var config = new HttpCheckConfig
             {
                 Url = new Uri("http://foo.bar/baz")
             };
 
             // Act
-            var result = await probe.RunVerificationAsync(probeConfig);
+            var result = await checker.RunCheckAsync(config);
 
             // Assert
-            result.Should().BeEquivalentTo(new VerificationResult
+            result.Should().BeEquivalentTo(new CheckResult
             {
                 Status = resultStatus,
-                Message = resultMessage
+                Description = resultMessage
             });
 
             var expectedUri = new Uri("http://foo.bar/baz");

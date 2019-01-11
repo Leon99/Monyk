@@ -1,7 +1,7 @@
 ﻿using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
-namespace Monyk.Agent.Probes.PingProbe
+namespace Monyk.Agent.Checkers.PingChecker
 {
     public interface IPing
     {
