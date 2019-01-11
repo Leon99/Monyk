@@ -282,4 +282,4 @@ healthchecksdb
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/src/Monyk.Manager/Monyk.db
+monyk.db

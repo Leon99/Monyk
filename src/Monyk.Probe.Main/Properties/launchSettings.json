@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Monyk.GroundControl": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

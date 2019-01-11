@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Agent.Tests", "test\Monyk.Agent.Tests\Monyk.Agent.Tests.csproj", "{2B967932-98E2-4021-AA65-7C446670B98E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Probe.Checkers.Tests", "test\Monyk.Probe.Checkers.Tests\Monyk.Probe.Checkers.Tests.csproj", "{2B967932-98E2-4021-AA65-7C446670B98E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Agent", "src\Monyk.Agent\Monyk.Agent.csproj", "{D2033E27-0D48-4155-8E13-312EE0EF8763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Probe.Main", "src\Monyk.Probe.Main\Monyk.Probe.Main.csproj", "{D2033E27-0D48-4155-8E13-312EE0EF8763}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Manager", "src\Monyk.Manager\Monyk.Manager.csproj", "{2E5542A2-0D18-40A3-B30E-6CC7B853AE16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Main", "src\Monyk.GroundControl.Main\Monyk.GroundControl.Main.csproj", "{2E5542A2-0D18-40A3-B30E-6CC7B853AE16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Manager.Db", "src\Monyk.Manager.Db\Monyk.Manager.Db.csproj", "{62D2BCD7-7545-4C74-97A7-3806D6F76B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Db", "src\Monyk.GroundControl.Db\Monyk.GroundControl.Db.csproj", "{62D2BCD7-7545-4C74-97A7-3806D6F76B02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Manager.Services", "src\Monyk.Manager.Services\Monyk.Manager.Services.csproj", "{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Services", "src\Monyk.GroundControl.Services\Monyk.GroundControl.Services.csproj", "{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agent", "Agent", "{A653D5D2-56A4-4F5E-B585-5EC6C0814294}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Probe", "Probe", "{A653D5D2-56A4-4F5E-B585-5EC6C0814294}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{91B8D1DD-A173-48F0-9DEC-69CFCDAAB7F0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GroundControl", "GroundControl", "{91B8D1DD-A173-48F0-9DEC-69CFCDAAB7F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Probe.Checkers", "src\Monyk.Probe.Checkers\Monyk.Probe.Checkers.csproj", "{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab", "Lab", "{41650A92-CBFA-43C0-92DB-1789B208BC81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,18 @@ Global
 		{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30}.Release|x64.Build.0 = Release|Any CPU
 		{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30}.Release|x86.Build.0 = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|x64.Build.0 = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +113,7 @@ Global
 		{2E5542A2-0D18-40A3-B30E-6CC7B853AE16} = {91B8D1DD-A173-48F0-9DEC-69CFCDAAB7F0}
 		{62D2BCD7-7545-4C74-97A7-3806D6F76B02} = {91B8D1DD-A173-48F0-9DEC-69CFCDAAB7F0}
 		{A1A592C3-C0A1-4CE2-AE65-5CD54BE79A30} = {91B8D1DD-A173-48F0-9DEC-69CFCDAAB7F0}
+		{6F687258-6503-42AB-A8FD-94FB8D7AC4E9} = {A653D5D2-56A4-4F5E-B585-5EC6C0814294}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4368D3FD-3189-4AD7-9801-CF327254BF4E}
