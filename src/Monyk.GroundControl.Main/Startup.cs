@@ -78,7 +78,7 @@ namespace Monyk.GroundControl.Main
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.ContentRootPath.EndsWith("IISExpress")) // Ensure consistent current directory
+            if (Directory.GetCurrentDirectory().EndsWith("IIS Express")) // Ensure consistent current directory
             {
                 Directory.SetCurrentDirectory(env.ContentRootPath);
             }
