@@ -50,7 +50,7 @@ namespace Monyk.GroundControl.Main
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "Monyk API",
+                    Title = "Ground Control",
                     Version = "v1"
                 });
             });
@@ -101,7 +101,7 @@ namespace Monyk.GroundControl.Main
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monyk API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monyk Ground Control API"); });
         }
 
         private void SeedDataForDevelopment(MonykDbContext db, MonitorScheduler scheduler)
