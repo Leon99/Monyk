@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using Monyk.Common.Communicator.Models;
+using Monyk.Common.Communicator.Services;
 using Monyk.GroundControl.Db.Entities;
 
 namespace Monyk.GroundControl.Services
@@ -8,17 +9,19 @@ namespace Monyk.GroundControl.Services
     public class MonitorScheduler
     {
         private readonly TimerFactory _timerFactory;
+        private readonly ITransmitter<CheckRequest> _transmitter;
 
-        public MonitorScheduler(TimerFactory timerFactory)
+        public MonitorScheduler(TimerFactory timerFactory, ITransmitter<CheckRequest> transmitter)
         {
             _timerFactory = timerFactory;
+            _transmitter = transmitter;
         }
 
         private readonly Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)> _schedules = new Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)>();
 
         public void AddSchedule(MonitorEntity monitor)
         {
-            var timer = _timerFactory.Create<MonitorEntity>(TimeSpan.FromSeconds(monitor.Interval), monitor, TimerElapsedHandler);
+            var timer = _timerFactory.Create(TimeSpan.FromSeconds(monitor.Interval), monitor, TimerElapsedHandler);
             var scheduleData = (timer, monitor);
             _schedules.Add(monitor.Id, scheduleData);
             timer.Start();
@@ -26,12 +29,12 @@ namespace Monyk.GroundControl.Services
 
         private void TimerElapsedHandler(MonitorEntity monitor)
         {
-            PostValidationRequest(monitor);
+            PublishCheckRequest(monitor);
         }
 
-        private void PostValidationRequest(MonitorEntity monitor)
+        private void PublishCheckRequest(MonitorEntity monitor)
         {
-            Debug.WriteLine($"Requesting {monitor.Id}...");
+            _transmitter.Transmit(Mapper.Map(monitor));
         }
 
         public void DeleteSchedule(Guid id)

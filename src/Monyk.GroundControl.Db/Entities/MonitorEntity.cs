@@ -1,14 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Monyk.Common.Models;
 
 namespace Monyk.GroundControl.Db.Entities
 {
-    public enum MonitorType
-    {
-        Http,
-        Ping
-    }
-
     public class MonitorEntity
     {
         public Guid Id { get; set; }

@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Monyk.Probe.Checkers\Monyk.Probe.Checkers.csproj" />
+    <ProjectReference Include="..\Monyk.Common.Communicator\Monyk.Common.Communicator.csproj" />
+  </ItemGroup>
+
 </Project>

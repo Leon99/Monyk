@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Monyk.Common.Communicator.Models;
+using Monyk.Common.Communicator.Services;
+using Monyk.Common.Models;
 using Monyk.GroundControl.Db;
 using Monyk.GroundControl.Db.Entities;
 using Monyk.GroundControl.Main.Models;
@@ -50,7 +53,7 @@ namespace Monyk.GroundControl.Main
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "Ground Control",
+                    Title = "Monyk Ground Control API",
                     Version = "v1"
                 });
             });
@@ -70,6 +73,7 @@ namespace Monyk.GroundControl.Main
             }
 
             services.AddScoped<MonitorManager>();
+            services.AddSingleton<ITransmitter<CheckRequest>, Transceiver<CheckRequest>>();
             services.AddSingleton<MonitorScheduler>();
             services.AddSingleton<TimerFactory>();
         }
@@ -101,7 +105,7 @@ namespace Monyk.GroundControl.Main
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monyk Ground Control API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
         }
 
         private void SeedDataForDevelopment(MonykDbContext db, MonitorScheduler scheduler)

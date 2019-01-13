@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Monyk.GroundControl.Db\Monyk.GroundControl.Db.csproj" />
+    <ProjectReference Include="..\Monyk.Common.Communicator\Monyk.Common.Communicator.csproj" />
   </ItemGroup>
 
 </Project>
