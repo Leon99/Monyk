@@ -6,7 +6,7 @@ using RabbitMQ.Client.Events;
 
 namespace Monyk.Common.Communicator.Services
 {
-    public interface ITransmitter<T>
+    public interface ITransmitter<in T>
     {
         void Transmit(T message);
     }
@@ -38,7 +38,7 @@ namespace Monyk.Common.Communicator.Services
 
         public void StartReception()
         {
-            _channel.QueueDeclare("task_queue",
+            _channel.QueueDeclare(typeof(T).Name,
                 true,
                 false,
                 false,
@@ -55,7 +55,7 @@ namespace Monyk.Common.Communicator.Services
                 OnReceived(message);
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
-            _channel.BasicConsume("task_queue",
+            _channel.BasicConsume(typeof(T).Name,
                 false,
                 consumer);
         }
@@ -72,7 +72,7 @@ namespace Monyk.Common.Communicator.Services
 
         public void Transmit(T message)
         {
-            _channel.QueueDeclare("task_queue",
+            _channel.QueueDeclare(typeof(T).Name,
                 true,
                 false,
                 false,
@@ -85,7 +85,7 @@ namespace Monyk.Common.Communicator.Services
             properties.Persistent = true;
 
             _channel.BasicPublish("",
-                "task_queue",
+                typeof(T).Name,
                 properties,
                 body);
         }

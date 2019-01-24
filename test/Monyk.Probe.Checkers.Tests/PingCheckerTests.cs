@@ -1,9 +1,9 @@
 ﻿using System.Net.NetworkInformation;
 using FluentAssertions;
-using Monyk.Probe.Checkers.PingChecker;
+using Monyk.Common.Models;
 using Moq;
 using Xunit;
-using PingReply = Monyk.Probe.Checkers.PingChecker.PingReply;
+using PingReply = Monyk.Probe.Checkers.PingReply;
 
 namespace Monyk.Probe.Checkers.Tests
 {
@@ -22,10 +22,10 @@ namespace Monyk.Probe.Checkers.Tests
                 {
                     Status = ipStatus
                 });
-            var pingChecker = new PingChecker.PingChecker(pingMock.Object);
-            var config = new PingCheckConfig
+            var pingChecker = new PingChecker(pingMock.Object);
+            var config = new CheckConfiguration
             {
-                Host = "foo"
+                Target = "foo"
             };
 
             // Act

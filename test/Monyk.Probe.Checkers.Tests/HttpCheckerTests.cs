@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Monyk.Probe.Checkers.HttpChecker;
+using Monyk.Common.Models;
 using Moq;
 using Moq.Protected;
 using Xunit;
@@ -33,10 +33,10 @@ namespace Monyk.Probe.Checkers.Tests
                 })
                 .Verifiable();
             var httpClientFactory = new FakeHttpClientFactory(handlerMock.Object);
-            var checker = new HttpChecker.HttpChecker(httpClientFactory);
-            var config = new HttpCheckConfig
+            var checker = new HttpChecker(httpClientFactory);
+            var config = new CheckConfiguration
             {
-                Url = new Uri("http://foo.bar/baz")
+                 Target= "http://foo.bar/baz"
             };
 
             // Act

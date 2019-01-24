@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="3.0.2" />
+    <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="2.1.0" />
+    <PackageReference Include="DryIoc.Microsoft.Hosting" Version="1.0.0-preview-01" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />

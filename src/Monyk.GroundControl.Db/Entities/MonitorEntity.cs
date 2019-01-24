@@ -14,6 +14,5 @@ namespace Monyk.GroundControl.Db.Entities
         public int Interval { get; set; }
         [Required]
         public string Target { get; set; }
-        //public dynamic Options { get; set; }
     }
 }

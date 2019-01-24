@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Monyk.Common.Models;
 
 namespace Monyk.Probe.Checkers
 {
-    public interface IChecker<in TConfig>
+    public interface IChecker
     {
-        Task<CheckResult> RunCheckAsync(TConfig config);
+        Task<CheckResult> RunCheckAsync(CheckConfiguration config);
     }
 }

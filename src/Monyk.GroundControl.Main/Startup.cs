@@ -82,10 +82,7 @@ namespace Monyk.GroundControl.Main
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (Directory.GetCurrentDirectory().EndsWith("IIS Express")) // Ensure consistent current directory
-            {
-                Directory.SetCurrentDirectory(env.ContentRootPath);
-            }
+            Directory.SetCurrentDirectory(env.ContentRootPath); // To make it consistent across different hosts
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -126,15 +123,16 @@ namespace Monyk.GroundControl.Main
                     Type = MonitorType.Http,
                     Target = "https://github.com",
                     Interval = 5,
-                    Description = "Test monitor (HTTP)"
-                },
-                new MonitorEntity
-                {
-                    Type = MonitorType.Ping,
-                    Target = "github.com",
-                    Interval = 15,
-                    Description = "Test monitor (Ping)"
-                });
+                    Description = "Test monitor (HTTP)",
+                }
+                //new MonitorEntity
+                //{
+                //    Type = MonitorType.Ping,
+                //    Target = "github.com",
+                //    Interval = 15,
+                //    Description = "Test monitor (Ping)"
+                //}
+                );
             db.SaveChanges();
             foreach (var monitor in db.Monitors)
             {

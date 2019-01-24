@@ -1,4 +1,5 @@
 ﻿using Monyk.Common.Communicator.Models;
+using Monyk.Common.Models;
 using Monyk.GroundControl.Db.Entities;
 
 namespace Monyk.GroundControl.Services
@@ -10,7 +11,10 @@ namespace Monyk.GroundControl.Services
             return new CheckRequest
             {
                 Type = monitor.Type,
-                Target = monitor.Target
+                Configuration = new CheckConfiguration
+                {
+                    Target = monitor.Target,
+                }
             };
         }
     }

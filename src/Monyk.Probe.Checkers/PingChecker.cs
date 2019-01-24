@@ -1,9 +1,10 @@
 ﻿using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Monyk.Common.Models;
 
-namespace Monyk.Probe.Checkers.PingChecker
+namespace Monyk.Probe.Checkers
 {
-    public class PingChecker : IChecker<PingCheckConfig>
+    public class PingChecker : IChecker
     {
         private readonly IPing _ping;
 
@@ -12,9 +13,9 @@ namespace Monyk.Probe.Checkers.PingChecker
             _ping = ping;
         }
 
-        public async Task<CheckResult> RunCheckAsync(PingCheckConfig config)
+        public async Task<CheckResult> RunCheckAsync(CheckConfiguration config)
         {
-            var result = await _ping.SendAsync(config.Host);
+            var result = await _ping.SendAsync(config.Target);
             return new CheckResult
             {
                 Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure

@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Monyk.Common.Models\Monyk.Common.Models.csproj" />
+  </ItemGroup>
+
 </Project>
