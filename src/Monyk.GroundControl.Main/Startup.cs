@@ -89,7 +89,7 @@ namespace Monyk.GroundControl.Main
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     SeedDataForDevelopment(
-                        serviceScope.ServiceProvider.GetService<MonykDbContext>(), 
+                        serviceScope.ServiceProvider.GetService<MonykDbContext>(),
                         app.ApplicationServices.GetService<MonitorScheduler>());
                 }
             }
@@ -122,17 +122,17 @@ namespace Monyk.GroundControl.Main
                 {
                     Type = MonitorType.Http,
                     Target = "https://github.com",
-                    Interval = 5,
+                    Interval = 1,
                     Description = "Test monitor (HTTP)",
+                },
+                new MonitorEntity
+                {
+                    Type = MonitorType.Ping,
+                    Target = "github.com",
+                    Interval = 1,
+                    Description = "Test monitor (Ping)"
                 }
-                //new MonitorEntity
-                //{
-                //    Type = MonitorType.Ping,
-                //    Target = "github.com",
-                //    Interval = 15,
-                //    Description = "Test monitor (Ping)"
-                //}
-                );
+            );
             db.SaveChanges();
             foreach (var monitor in db.Monitors)
             {
