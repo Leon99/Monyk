@@ -27,7 +27,7 @@ namespace Monyk.Probe.Main
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Launching the probe");
-            _receiver.Received += async (sender, check) => await RunCheckAsync(check);
+            _receiver.Received += (sender, check) => RunCheckAsync(check);
             _receiver.StartReception();
             return Task.CompletedTask;
         }
