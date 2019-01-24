@@ -5,7 +5,7 @@
 ### What is this?
 
 It's a distributed reliability monitoring tool that can be operated without learning rocket science.
-It's like UptimeRobot, only open-source, self-hosted, cross-platform, DevOps-friendly and cost-efficient.
+It's like UptimeRobot, only open-source, self-hosted, cross-platform, RESTful, DevOps-friendly and cost-efficient.
 
 ### What exactly can it do?
 
@@ -22,7 +22,7 @@ Monitoring results can be stored in [Graphite](https://graphiteapp.org).
 
 #### Hold on, but you said there will be no rocket science?
 
-I lied. It won't happen again, I promise 🖖
+Feel free to correct it and submit a PR 🖖
 
 ## Details
 
