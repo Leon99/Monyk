@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Monyk.GroundControl": {
+    "Monyk.Probe.Main": {
       "commandName": "Project",
       "environmentVariables": {
         "ENVIRONMENT": "Development"

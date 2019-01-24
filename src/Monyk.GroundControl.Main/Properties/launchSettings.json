@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Monyk.Manager": {
+    "Monyk.GroundControl.Main": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
