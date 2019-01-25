@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Monyk.Common.Communicator.Models;
-using Monyk.Common.Communicator.Services;
+using Monyk.Common.Communicator;
+using Monyk.Common.Models;
 using Monyk.GroundControl.Db.Entities;
 
 namespace Monyk.GroundControl.Services

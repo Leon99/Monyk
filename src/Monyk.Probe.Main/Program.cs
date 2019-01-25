@@ -1,13 +1,10 @@
 ﻿using System.Threading.Tasks;
-using DryIoc;
-using DryIoc.Microsoft.DependencyInjection;
-using DryIoc.Microsoft.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Monyk.Common.Communicator.Models;
-using Monyk.Common.Communicator.Services;
+using Monyk.Common.Communicator;
+using Monyk.Common.Models;
 using Monyk.Probe.Checkers;
 
 namespace Monyk.Probe.Main

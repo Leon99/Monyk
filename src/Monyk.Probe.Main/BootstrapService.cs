@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Monyk.Common.Communicator.Models;
-using Monyk.Common.Communicator.Services;
+using Monyk.Common.Communicator;
+using Monyk.Common.Models;
 using Monyk.Probe.Checkers;
 
 namespace Monyk.Probe.Main
@@ -27,7 +27,9 @@ namespace Monyk.Probe.Main
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Launching the probe");
+#pragma warning disable 4014
             _receiver.Received += (sender, check) => RunCheckAsync(check);
+#pragma warning restore 4014
             _receiver.StartReception();
             return Task.CompletedTask;
         }

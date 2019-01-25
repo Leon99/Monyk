@@ -19,7 +19,7 @@ namespace Monyk.Probe.Checkers
             var response = await client.GetAsync(config.Target);
             return new CheckResult
             {
-                Status = response.IsSuccessStatusCode ? CheckResultStatus.Success : CheckResultStatus.Failure
+                Status = response.IsSuccessStatusCode ? CheckResultStatus.Success : CheckResultStatus.Failure,
             };
         }
     }

@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Monyk.Common.Communicator.Models;
-using Monyk.Common.Communicator.Services;
+using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.GroundControl.Db;
 using Monyk.GroundControl.Db.Entities;
@@ -122,14 +121,14 @@ namespace Monyk.GroundControl.Main
                 {
                     Type = MonitorType.Http,
                     Target = "https://github.com",
-                    Interval = 1,
+                    Interval = 5,
                     Description = "Test monitor (HTTP)",
                 },
                 new MonitorEntity
                 {
                     Type = MonitorType.Ping,
                     Target = "github.com",
-                    Interval = 1,
+                    Interval = 5,
                     Description = "Test monitor (Ping)"
                 }
             );

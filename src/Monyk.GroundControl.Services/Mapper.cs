@@ -1,5 +1,4 @@
-﻿using Monyk.Common.Communicator.Models;
-using Monyk.Common.Models;
+﻿using Monyk.Common.Models;
 using Monyk.GroundControl.Db.Entities;
 
 namespace Monyk.GroundControl.Services

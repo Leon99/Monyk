@@ -1,4 +1,4 @@
-﻿namespace Monyk.Probe.Checkers
+﻿namespace Monyk.Common.Models
 {
     public enum CheckResultStatus
     {

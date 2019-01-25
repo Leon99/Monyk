@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Monyk.Common.Communicator.Services
+namespace Monyk.Common.Communicator
 {
     public interface ITransmitter<in T>
     {
@@ -17,7 +17,7 @@ namespace Monyk.Common.Communicator.Services
         void StartReception();
     }
 
-    public class TransceiverBase
+    public abstract class TransceiverBase
     {
         protected static readonly Encoding BodyEncoding = Encoding.UTF8;
     }

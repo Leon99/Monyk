@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Monyk.Probe.Main\Monyk.Probe.Main.csproj" />
     <ProjectReference Include="..\..\src\Monyk.Probe.Checkers\Monyk.Probe.Checkers.csproj" />
   </ItemGroup>
 

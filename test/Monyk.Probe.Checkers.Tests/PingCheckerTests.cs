@@ -3,7 +3,6 @@ using FluentAssertions;
 using Monyk.Common.Models;
 using Moq;
 using Xunit;
-using PingReply = Monyk.Probe.Checkers.PingReply;
 
 namespace Monyk.Probe.Checkers.Tests
 {
