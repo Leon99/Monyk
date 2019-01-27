@@ -1,0 +1,12 @@
+﻿Logging:
+  LogLevel:
+    Default: Warning
+AllowedHosts: "*"
+Monyk.GroundControl:
+  Database: '<env. specific>'
+Monyk.Common.Communicator:
+  RabbitMQ:
+    Host: '<env. specific>'
+    VHost: '<env. specific>'
+    UserName: '<env. specific>'
+    Password: '<env. specific secret>'

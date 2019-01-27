@@ -1,9 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <UserSecretsId>50b01a61-fc0b-4936-873f-adca2d46efc5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,17 +12,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DryIoc.dll" Version="3.0.2" />
-    <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="DryIoc.Microsoft.Hosting" Version="1.0.0-preview-01" />
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="NetEscapades.Configuration.Yaml" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Monyk.Common.Startup\Monyk.Common.Startup.csproj" />
     <ProjectReference Include="..\Monyk.Probe.Checkers\Monyk.Probe.Checkers.csproj" />
     <ProjectReference Include="..\Monyk.Common.Communicator\Monyk.Common.Communicator.csproj" />
   </ItemGroup>

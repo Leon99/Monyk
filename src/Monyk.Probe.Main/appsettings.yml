@@ -1,0 +1,10 @@
+﻿Logging:
+  LogLevel:
+    Default: Warning
+AllowedHosts: "*"
+Monyk.Common.Communicator:
+  RabbitMQ:
+    Host: '<env. specific>'
+    VHost: '<env. specific>'
+    UserName: '<env. specific>'
+    Password: '<env. specific secret>'

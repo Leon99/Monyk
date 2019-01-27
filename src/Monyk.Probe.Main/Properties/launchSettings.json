@@ -3,7 +3,7 @@
     "Monyk.Probe.Main": {
       "commandName": "Project",
       "environmentVariables": {
-        "ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

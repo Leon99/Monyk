@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
+using Monyk.Common.Startup;
 using Monyk.GroundControl.Db;
 using Monyk.GroundControl.Db.Entities;
 using Monyk.GroundControl.Main.Models;
@@ -19,17 +20,17 @@ namespace Monyk.GroundControl.Main
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         private const string SqliteFileName = "monyk.db";
-        private readonly MonykSettings _appSettings;
+        private readonly GroundControlSettings _appSettings;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _appSettings = new MonykSettings();
-            Configuration.Bind("Monyk", _appSettings);
+            _appSettings = new GroundControlSettings();
+            Configuration.Bind("Monyk.GroundControl", _appSettings);
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         [UsedImplicitly]
@@ -56,6 +57,18 @@ namespace Monyk.GroundControl.Main
                     Version = "v1"
                 });
             });
+            AddDatabase(services);
+
+            services.AddRabbitMQConnectionFactory(Configuration);
+            services.AddSingleton<ITransmitter<CheckRequest>, Transceiver<CheckRequest>>();
+            
+            services.AddScoped<MonitorManager>();
+            services.AddSingleton<MonitorScheduler>();
+            services.AddSingleton<TimerFactory>();
+        }
+
+        private void AddDatabase(IServiceCollection services)
+        {
             switch (_appSettings.Database)
             {
                 case DatabaseType.Pgsql:
@@ -70,11 +83,6 @@ namespace Monyk.GroundControl.Main
                     throw new ConfigurationErrorsException(
                         $"Unable to initialize the storage due to misconfiguration. Database setting value '{Configuration["Database"]}' is not supported.");
             }
-
-            services.AddScoped<MonitorManager>();
-            services.AddSingleton<ITransmitter<CheckRequest>, Transceiver<CheckRequest>>();
-            services.AddSingleton<MonitorScheduler>();
-            services.AddSingleton<TimerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

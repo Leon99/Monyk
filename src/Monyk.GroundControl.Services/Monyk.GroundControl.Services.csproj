@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Monyk.GroundControl.Db\Monyk.GroundControl.Db.csproj" />
     <ProjectReference Include="..\Monyk.Common.Communicator\Monyk.Common.Communicator.csproj" />
   </ItemGroup>

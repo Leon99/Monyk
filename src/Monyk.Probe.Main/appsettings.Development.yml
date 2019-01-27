@@ -1,0 +1,10 @@
+﻿Logging:
+  LogLevel:
+    Default: Debug
+    System: Information
+    Microsoft: Information
+Monyk.Common.Communicator:
+  RabbitMQ:
+    Host: vulture.rmq.cloudamqp.com
+    VHost: iegvyoic
+    UserName: iegvyoic
