@@ -28,7 +28,7 @@ namespace Monyk.Lab.Main
 
         private void ProcessResult(CheckResult result)
         {
-            _logger.LogInformation("Processing results");
+            _logger.LogInformation($"Processing result of check {result.CheckId}");
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

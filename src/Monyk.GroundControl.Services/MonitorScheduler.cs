@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.GroundControl.Db.Entities;
@@ -8,11 +9,13 @@ namespace Monyk.GroundControl.Services
 {
     public class MonitorScheduler
     {
+        private readonly ILogger<MonitorScheduler> _logger;
         private readonly TimerFactory _timerFactory;
         private readonly ITransmitter<CheckRequest> _transmitter;
 
-        public MonitorScheduler(TimerFactory timerFactory, ITransmitter<CheckRequest> transmitter)
+        public MonitorScheduler(ILogger<MonitorScheduler> logger, TimerFactory timerFactory, ITransmitter<CheckRequest> transmitter)
         {
+            _logger = logger;
             _timerFactory = timerFactory;
             _transmitter = transmitter;
         }
@@ -34,7 +37,10 @@ namespace Monyk.GroundControl.Services
 
         private void PublishCheckRequest(MonitorEntity monitor)
         {
-            _transmitter.Transmit(Mapper.Map(monitor));
+            var request = Mapper.Map(monitor);
+            request.CheckId = Guid.NewGuid();
+            _logger.LogInformation($"Requesting check {request.CheckId}");
+            _transmitter.Transmit(request);
         }
 
         public void DeleteSchedule(Guid id)

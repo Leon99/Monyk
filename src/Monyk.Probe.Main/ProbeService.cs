@@ -34,19 +34,21 @@ namespace Monyk.Probe.Main
             return Task.CompletedTask;
         }
 
-        private async Task RunCheckAsync(CheckRequest check)
+        private async Task RunCheckAsync(CheckRequest request)
         {
-            if (check.Configuration == null)
+            if (request.Configuration == null)
             {
                 _logger.LogError("Incomplete message received");
                 return;
             }
-            _logger.LogInformation($"({check.Type}) {check.Configuration.Target}");
-            var checker = _checkerFactory.Create(check.Type);
+            _logger.LogInformation($"({request.Type}) {request.Configuration.Target}");
+            var checker = _checkerFactory.Create(request.Type);
             try
             {
-                var results = await checker.RunCheckAsync(check.Configuration);
-                _transmitter.Transmit(results);
+                _logger.LogInformation($"Running check {request.CheckId}");
+                var result = await checker.RunCheckAsync(request.Configuration);
+                result.CheckId = request.CheckId;
+                _transmitter.Transmit(result);
             }
             catch (Exception ex)
             {
