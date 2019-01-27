@@ -22,8 +22,13 @@ namespace Monyk.Lab.Main
         [UsedImplicitly]
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
+            services.AddSingleton(_configuration.GetSection("Monyk.Lab.Main:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>());
+            services.AddSingleton<IResultProcessor, SlackNotifier>();
+
             services.AddHostedService<LabService>();
         }
 

@@ -20,16 +20,15 @@ namespace Monyk.GroundControl.Main
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
 
         private const string SqliteFileName = "monyk.db";
         private readonly GroundControlSettings _appSettings;
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-            _appSettings = new GroundControlSettings();
-            Configuration.Bind("Monyk.GroundControl", _appSettings);
+            _configuration = configuration;
+            _appSettings = _configuration.GetSection("Monyk.GroundControl").Get<GroundControlSettings>();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -59,7 +58,7 @@ namespace Monyk.GroundControl.Main
             });
             AddDatabase(services);
 
-            services.AddRabbitMQConnectionFactory(Configuration);
+            services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<ITransmitter<CheckRequest>, Transceiver<CheckRequest>>();
             
             services.AddScoped<MonitorManager>();
@@ -73,7 +72,7 @@ namespace Monyk.GroundControl.Main
             {
                 case DatabaseType.Pgsql:
                     services.AddEntityFrameworkNpgsql()
-                        .AddDbContext<MonykDbContext>(builder => builder.UseNpgsql(Configuration.GetConnectionString("MainDb")))
+                        .AddDbContext<MonykDbContext>(builder => builder.UseNpgsql(_configuration.GetConnectionString("MainDb")))
                         .BuildServiceProvider();
                     break;
                 case DatabaseType.Sqlite:
@@ -81,7 +80,7 @@ namespace Monyk.GroundControl.Main
                     break;
                 default:
                     throw new ConfigurationErrorsException(
-                        $"Unable to initialize the storage due to misconfiguration. Database setting value '{Configuration["Database"]}' is not supported.");
+                        $"Unable to initialize the storage due to misconfiguration. Database setting value '{_configuration["Database"]}' is not supported.");
             }
         }
 

@@ -8,3 +8,8 @@ Monyk.Common.Communicator:
     VHost: '<env. specific>'
     UserName: '<env. specific>'
     Password: '<env. specific secret>'
+Monyk.Lab.Main:
+  ResultProcessors:
+    SlackNotifier:
+      WebHooks: '<env. specific secrets (list)>'
+        
