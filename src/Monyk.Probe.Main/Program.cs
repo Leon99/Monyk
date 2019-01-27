@@ -12,11 +12,13 @@ namespace Monyk.Probe.Main
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost
                 .CreateDefaultBuilder(args)
                 .UseAppSettingsYaml()
                 .ConfigureAppConfiguration(config => config.AddUserSecrets(typeof(Program).Assembly))
                 .UseStartup<Startup>();
+        }
     }
 }

@@ -1,22 +1,24 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Monyk.Common.Startup;
 
 namespace Monyk.GroundControl.Main
 {
-    public class Program
+    class Program
     {
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            await WebHost
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost
                 .CreateDefaultBuilder(args)
                 .UseAppSettingsYaml()
                 .ConfigureAppConfiguration(config => config.AddUserSecrets(typeof(Program).Assembly))
-                .UseStartup<Startup>()
-                .Build()
-                .RunAsync();
+                .UseStartup<Startup>();
         }
     }
 }
