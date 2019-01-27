@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:42102",
-      "sslPort": 42112
+      "applicationUrl": "http://localhost:42103",
+      "sslPort": 42113
     }
   },
   "profiles": {
@@ -14,12 +14,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Monyk.Probe.Main": {
+    "Monyk.Lab.Main": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:42012;http://localhost:42002"
+      "applicationUrl": "https://localhost:42013;http://localhost:42003"
+    },
+    "Docker": {
+      "commandName": "Docker"
     }
   }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Monyk.Common.Startup;
 
-namespace Monyk.Probe.Main
+namespace Monyk.Lab.Main
 {
     class Program
     {

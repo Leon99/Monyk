@@ -9,14 +9,14 @@ using Monyk.Probe.Checkers;
 
 namespace Monyk.Probe.Main
 {
-    class BootstrapService : IHostedService
+    class ProbeService : IHostedService
     {
-        private readonly ILogger<BootstrapService> _logger;
+        private readonly ILogger<ProbeService> _logger;
         private readonly IReceiver<CheckRequest> _receiver;
         private readonly CheckerFactory _checkerFactory;
         private readonly ITransmitter<CheckResult> _transmitter;
 
-        public BootstrapService(ILogger<BootstrapService> logger, IReceiver<CheckRequest> receiver, ITransmitter<CheckResult> transmitter, CheckerFactory checkerFactory)
+        public ProbeService(ILogger<ProbeService> logger, IReceiver<CheckRequest> receiver, ITransmitter<CheckResult> transmitter, CheckerFactory checkerFactory)
         {
             _logger = logger;
             _receiver = receiver;
