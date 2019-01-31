@@ -3,6 +3,8 @@
     Default: Debug
     System: Information
     Microsoft: Information
+Monyk.Lab.Main:
+  GroundControlBaseUrl: https://localhost:42011/api/v1
 Monyk.Common.Communicator:
   RabbitMQ:
     Host: vulture.rmq.cloudamqp.com

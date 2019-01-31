@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using Monyk.Common.Models;
+using Monyk.GroundControl.ApiClient;
 
 namespace Monyk.Lab.Main
 {
@@ -15,20 +16,25 @@ namespace Monyk.Lab.Main
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly SlackNotifierSettings _settings;
+        private readonly IGroundControlApi _gcApi;
         private static readonly JsonMediaTypeFormatter Formatter = new JsonMediaTypeFormatter();
 
-        public SlackNotifier(IHttpClientFactory httpClientFactory, SlackNotifierSettings settings)
+        public SlackNotifier(IHttpClientFactory httpClientFactory, SlackNotifierSettings settings, IGroundControlApi gcApi)
         {
             _httpClientFactory = httpClientFactory;
             _settings = settings;
+            _gcApi = gcApi;
         }
 
         public async Task RunAsync(CheckResult result)
         {
             var httpClient = _httpClientFactory.CreateClient();
-            foreach (var webHook in _settings.WebHooks)
+            if (result.Status != CheckResultStatus.Success)
             {
-                await httpClient.PostAsync(webHook,  new {text=$"{result.CheckId} is {result.Status}"}, Formatter);
+                foreach (var webHook in _settings.WebHooks)
+                {
+                    await httpClient.PostAsync(webHook, new {text = $"{result.MonitorId} is {result.Status}"}, Formatter);
+                }
             }
         }
     }

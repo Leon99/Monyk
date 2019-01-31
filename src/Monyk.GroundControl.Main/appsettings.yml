@@ -3,7 +3,7 @@
     Default: Warning
 AllowedHosts: "*"
 Monyk.GroundControl:
-  Database: '<env. specific>'
+  DatabaseType: '<env. specific>'
 Monyk.Common.Communicator:
   RabbitMQ:
     Host: '<env. specific>'

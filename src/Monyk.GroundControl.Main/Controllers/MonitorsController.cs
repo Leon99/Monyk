@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
-using Monyk.GroundControl.Db.Entities;
+using Monyk.GroundControl.Models;
 using Monyk.GroundControl.Services;
 
 namespace Monyk.GroundControl.Main.Controllers
 {
     [Route("api/v1/monitors")]
-    //[Consumes("application/json")]
     [Produces("application/json")]
-    [ApiController]
-    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class MonitorsController : ControllerBase
     {
         private readonly MonitorManager _service;
@@ -24,22 +20,22 @@ namespace Monyk.GroundControl.Main.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MonitorEntity>>> GetMonitors()
+        public async Task<ActionResult<IEnumerable<Monitor>>> GetMonitors()
         {
             var entities = await _service.GetMonitorsAsReadOnly();
-            return entities.Any() ? (ActionResult<IEnumerable<MonitorEntity>>) Ok(entities) : NotFound();
+            return entities.Any() ? (ActionResult<IEnumerable<Monitor>>) Ok(entities) : NotFound();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<MonitorEntity>> GetMonitor(Guid id)
+        public async Task<ActionResult<Monitor>> GetMonitor(Guid id)
         {
             var monitor = await _service.GetMonitor(id);
 
-            return monitor ?? (ActionResult<MonitorEntity>)NotFound();
+            return monitor ?? (ActionResult<Monitor>)NotFound();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMonitor(Guid id, MonitorEntity monitor)
+        public async Task<IActionResult> UpdateMonitor(Guid id, Monitor monitor)
         {
             if (id != monitor.Id)
             {
@@ -55,7 +51,7 @@ namespace Monyk.GroundControl.Main.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<MonitorEntity>> CreateMonitor(MonitorEntity monitor)
+        public async Task<ActionResult<Monitor>> CreateMonitor(Monitor monitor)
         {
             await _service.CreateMonitor(monitor);
 

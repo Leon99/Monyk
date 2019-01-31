@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
-using Monyk.GroundControl.Db.Entities;
+using Monyk.GroundControl.Models;
 
 namespace Monyk.GroundControl.Services
 {
@@ -20,9 +20,9 @@ namespace Monyk.GroundControl.Services
             _transmitter = transmitter;
         }
 
-        private readonly Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)> _schedules = new Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)>();
+        private readonly Dictionary<Guid, (ITimer<Monitor>, Monitor)> _schedules = new Dictionary<Guid, (ITimer<Monitor>, Monitor)>();
 
-        public void AddSchedule(MonitorEntity monitor)
+        public void AddSchedule(Monitor monitor)
         {
             var timer = _timerFactory.Create(TimeSpan.FromSeconds(monitor.Interval), monitor, TimerElapsedHandler);
             var scheduleData = (timer, monitor);
@@ -30,12 +30,12 @@ namespace Monyk.GroundControl.Services
             timer.Start();
         }
 
-        private void TimerElapsedHandler(MonitorEntity monitor)
+        private void TimerElapsedHandler(Monitor monitor)
         {
             PublishCheckRequest(monitor);
         }
 
-        private void PublishCheckRequest(MonitorEntity monitor)
+        private void PublishCheckRequest(Monitor monitor)
         {
             var request = Mapper.Map(monitor);
             request.CheckId = Guid.NewGuid();

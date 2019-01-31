@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.Common.Startup;
+using Monyk.GroundControl.ApiClient;
+using Refit;
 
 namespace Monyk.Lab.Main
 {
@@ -28,6 +31,8 @@ namespace Monyk.Lab.Main
             services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
             services.AddSingleton(_configuration.GetSection("Monyk.Lab.Main:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>());
             services.AddSingleton<IResultProcessor, SlackNotifier>();
+            services.AddRefitClient<IGroundControlApi>()
+                .ConfigureHttpClient(client => client.BaseAddress = new Uri(_configuration["Monyk.Lab.Main:GroundControlBaseUrl"]));
 
             services.AddHostedService<LabService>();
         }

@@ -9,6 +9,7 @@ Monyk.Common.Communicator:
     UserName: '<env. specific>'
     Password: '<env. specific secret>'
 Monyk.Lab.Main:
+  GroundControlBaseUrl: '<env. specific>'
   ResultProcessors:
     SlackNotifier:
       WebHooks: '<env. specific secrets (list)>'

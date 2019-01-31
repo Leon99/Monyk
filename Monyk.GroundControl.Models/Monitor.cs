@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Monyk.Common.Models;
 
-namespace Monyk.GroundControl.Db.Entities
+namespace Monyk.GroundControl.Models
 {
-    public class MonitorEntity
+    public class Monitor
     {
         public Guid Id { get; set; }
         public string Description { get; set; }

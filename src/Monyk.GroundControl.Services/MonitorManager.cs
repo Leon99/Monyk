@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Monyk.GroundControl.Db;
-using Monyk.GroundControl.Db.Entities;
+using Monyk.GroundControl.Models;
 
 namespace Monyk.GroundControl.Services
 {
@@ -19,21 +19,21 @@ namespace Monyk.GroundControl.Services
             _scheduler = scheduler;
         }
 
-        public async Task<IEnumerable<MonitorEntity>> GetMonitorsAsReadOnly()
+        public async Task<IEnumerable<Monitor>> GetMonitorsAsReadOnly()
         {
             return await _db.Monitors.AsNoTracking().ToListAsync();
         }
 
-        public async Task<MonitorEntity> GetMonitor(Guid id)
+        public async Task<Monitor> GetMonitor(Guid id)
         {
             var monitor = await _db.Monitors.FindAsync(id);
 
             return monitor;
         }
 
-        public async Task<bool> TryUpdateMonitor(Guid id, MonitorEntity monitorEntity)
+        public async Task<bool> TryUpdateMonitor(Guid id, Monitor monitor)
         {
-            _db.Entry(monitorEntity).State = EntityState.Modified;
+            _db.Entry(monitor).State = EntityState.Modified;
 
             try
             {
@@ -60,11 +60,11 @@ namespace Monyk.GroundControl.Services
         }
 
 
-        public async Task CreateMonitor(MonitorEntity monitorEntity)
+        public async Task CreateMonitor(Monitor monitor)
         {
-            _db.Monitors.Add(monitorEntity);
+            _db.Monitors.Add(monitor);
             await _db.SaveChangesAsync();
-            _scheduler.AddSchedule(monitorEntity);
+            _scheduler.AddSchedule(monitor);
         }
 
         public async Task<bool> TryDeleteMonitor(Guid id)

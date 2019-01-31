@@ -1,7 +1,9 @@
-﻿namespace Monyk.GroundControl.Main.Models
+﻿using Monyk.GroundControl.Db;
+
+namespace Monyk.GroundControl.Main.Models
 {
     public class GroundControlSettings
     {
-        public DatabaseType Database { get; set; }
+        public DatabaseType DatabaseType { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Monyk.GroundControl.Main.Models
+﻿namespace Monyk.GroundControl.Db
 {
     public enum DatabaseType
     {

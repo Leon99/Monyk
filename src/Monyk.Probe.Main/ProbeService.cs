@@ -48,6 +48,7 @@ namespace Monyk.Probe.Main
                 _logger.LogInformation($"Running check {request.CheckId}");
                 var result = await checker.RunCheckAsync(request.Configuration);
                 result.CheckId = request.CheckId;
+                result.MonitorId = request.MonitorId;
                 _transmitter.Transmit(result);
             }
             catch (Exception ex)

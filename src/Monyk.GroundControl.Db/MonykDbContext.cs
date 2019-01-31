@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Monyk.GroundControl.Db.Entities;
+using Monyk.GroundControl.Models;
 
 namespace Monyk.GroundControl.Db
 {
@@ -9,6 +9,6 @@ namespace Monyk.GroundControl.Db
         {
         }
 
-        public DbSet<MonitorEntity> Monitors { get; set; }
+        public DbSet<Monitor> Monitors { get; set; }
     }
 }
