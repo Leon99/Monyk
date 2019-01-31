@@ -5,12 +5,12 @@
 ### What is this?
 
 It's a distributed reliability monitoring tool that can be operated without learning rocket science.
-It's like UptimeRobot, only open-source, self-hosted, cross-platform, RESTful, DevOps-friendly and cost-efficient.
+It's like UptimeRobot, only open-source, extensible, self-hosted, cross-platform, RESTful, DevOps-friendly and cost-efficient.
 
 ### What exactly can it do?
 
 At the moment, it can monitor web sites and ping hosts from multiple locations.
-Monitoring results can be stored in [Graphite](https://graphiteapp.org).
+Failure alerts are sent to Slack.
 
 ### OK how do I use it?
 
