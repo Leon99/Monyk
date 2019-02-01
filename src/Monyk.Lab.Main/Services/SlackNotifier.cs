@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Monyk.Common.Models;
 using Monyk.GroundControl.ApiClient;
 
-namespace Monyk.Lab.Main
+namespace Monyk.Lab.Main.Services
 {
     public class SlackNotifierSettings
     {
@@ -31,9 +31,10 @@ namespace Monyk.Lab.Main
             var httpClient = _httpClientFactory.CreateClient();
             if (result.Status != CheckResultStatus.Success)
             {
+                var monitor = await _gcApi.GetMonitorAsync(result.MonitorId);
                 foreach (var webHook in _settings.WebHooks)
                 {
-                    await httpClient.PostAsync(webHook, new {text = $"{result.MonitorId} is {result.Status}"}, Formatter);
+                    await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} resulted in *{result.Status}*"}, Formatter);
                 }
             }
         }

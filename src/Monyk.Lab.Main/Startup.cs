@@ -8,6 +8,7 @@ using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.Common.Startup;
 using Monyk.GroundControl.ApiClient;
+using Monyk.Lab.Main.Services;
 using Refit;
 
 namespace Monyk.Lab.Main
