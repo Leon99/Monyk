@@ -38,9 +38,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Common.Startup", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Lab.Main", "src\Monyk.Lab.Main\Monyk.Lab.Main.csproj", "{7C39D557-5BCA-46AA-A20F-84D5AEC89C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.GroundControl.Models", "Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj", "{C17273E7-1A42-4B3D-B7D2-897E5FA35861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Models", "Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj", "{C17273E7-1A42-4B3D-B7D2-897E5FA35861}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.GroundControl.ApiClient", "Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj", "{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.ApiClient", "Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj", "{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{52DA9560-2AFB-4291-81D3-88D579E6E9A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -196,6 +198,18 @@ Global
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x64.Build.0 = Release|Any CPU
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x86.Build.0 = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x64.Build.0 = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

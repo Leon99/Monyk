@@ -47,26 +47,26 @@ namespace Monyk.GroundControl.Db
                 {
                     Type = MonitorType.Http,
                     Target = "https://github.com",
-                    Interval = 5,
+                    Interval = 55,
                     Description = "Happy HTTP monitor",
                 }, new Monitor
                 {
                     Type = MonitorType.Http,
                     Target = "https://foo.bar",
-                    Interval = 5,
+                    Interval = 55,
                     Description = "Sad HTTP monitor",
                 },
                 new Monitor
                 {
                     Type = MonitorType.Ping,
                     Target = "github.com",
-                    Interval = 5,
+                    Interval = 55,
                     Description = "Happy Ping monitor"
                 }, new Monitor
                 {
                     Type = MonitorType.Ping,
                     Target = "github.com",
-                    Interval = 5,
+                    Interval = 55,
                     Description = "Sad Ping monitor"
                 }
             );

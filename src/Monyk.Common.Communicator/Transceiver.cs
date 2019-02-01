@@ -37,11 +37,7 @@ namespace Monyk.Common.Communicator
 
         public void StartReception()
         {
-            _channel.QueueDeclare(typeof(T).Name,
-                true,
-                false,
-                false,
-                null);
+            DeclareQueue();
 
             _channel.BasicQos(0, 1, false);
 
@@ -71,11 +67,7 @@ namespace Monyk.Common.Communicator
 
         public void Transmit(T message)
         {
-            _channel.QueueDeclare(typeof(T).Name,
-                true,
-                false,
-                false,
-                null);
+            DeclareQueue();
 
             var messageString = Serialize(message);
             var body = BodyEncoding.GetBytes(messageString);
@@ -87,6 +79,16 @@ namespace Monyk.Common.Communicator
                 typeof(T).Name,
                 properties,
                 body);
+        }
+
+        private void DeclareQueue()
+        {
+            _channel.QueueDeclare(
+                typeof(T).Name,
+                true,
+                false,
+                true,
+                null);
         }
 
         protected virtual void OnReceived(T message)

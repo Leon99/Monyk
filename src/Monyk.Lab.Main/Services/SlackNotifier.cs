@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using Monyk.Common.Models;
 using Monyk.GroundControl.ApiClient;
+using Monyk.GroundControl.Models;
 
 namespace Monyk.Lab.Main.Services
 {
@@ -31,10 +33,22 @@ namespace Monyk.Lab.Main.Services
             var httpClient = _httpClientFactory.CreateClient();
             if (result.Status != CheckResultStatus.Success)
             {
-                var monitor = await _gcApi.GetMonitorAsync(result.MonitorId);
-                foreach (var webHook in _settings.WebHooks)
+                Monitor monitor = null;
+                try
                 {
-                    await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} resulted in *{result.Status}*"}, Formatter);
+                    monitor = await _gcApi.GetMonitorAsync(result.MonitorId);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
+                if (monitor != null)
+                {
+                    foreach (var webHook in _settings.WebHooks)
+                    {
+                        await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} resulted in *{result.Status}*"}, Formatter);
+                    }
                 }
             }
         }

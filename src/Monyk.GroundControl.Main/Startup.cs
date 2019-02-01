@@ -85,7 +85,7 @@ namespace Monyk.GroundControl.Main
                 ScheduleMonitors(db, app.ApplicationServices.GetService<MonitorScheduler>());
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
