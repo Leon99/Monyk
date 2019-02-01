@@ -65,8 +65,8 @@ namespace Monyk.GroundControl.Db
                 }, new Monitor
                 {
                     Type = MonitorType.Ping,
-                    Target = "github.com",
-                    Interval = 55,
+                    Target = "foo.bar",
+                    Interval = 10,
                     Description = "Sad Ping monitor"
                 }
             );

@@ -3,6 +3,19 @@ using System.Threading.Tasks;
 
 namespace Monyk.Probe.Checkers
 {
+    public interface IPingFactory
+    {
+        IPing Create();
+    }
+
+    public class PingFactory : IPingFactory
+    {
+        public IPing Create()
+        {
+            return new Ping();
+        }
+    }
+
     public interface IPing
     {
         Task<PingReply> SendAsync(string address);

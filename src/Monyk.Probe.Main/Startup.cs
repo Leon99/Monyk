@@ -32,8 +32,8 @@ namespace Monyk.Probe.Main
             services.AddHostedService<ProbeService>();
 
             services.AddSingleton<CheckerFactory>();
-            services.AddTransient<IPing, Ping>();
-            services.AddTransient<IChecker, PingChecker>();
+            services.AddSingleton<IPingFactory, PingFactory>();
+            services.AddSingleton<IChecker, PingChecker>();
             services.AddSingleton<IChecker, HttpChecker>();
         }
 

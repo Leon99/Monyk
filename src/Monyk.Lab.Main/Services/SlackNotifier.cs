@@ -47,7 +47,7 @@ namespace Monyk.Lab.Main.Services
                 {
                     foreach (var webHook in _settings.WebHooks)
                     {
-                        await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} resulted in *{result.Status}*"}, Formatter);
+                        await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} (_{monitor.Description}_) resulted in *{result.Status}*"}, Formatter);
                     }
                 }
             }
