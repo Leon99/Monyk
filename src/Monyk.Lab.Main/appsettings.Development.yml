@@ -7,6 +7,7 @@ Monyk.Lab.Main:
   GroundControlBaseUrl: http://monyk.groundcontrol.main/api/v1
 Monyk.Common.Communicator:
   RabbitMQ:
-    Host: vulture.rmq.cloudamqp.com
-    VHost: iegvyoic
-    UserName: iegvyoic
+    Host: localhost
+    VHost: '/'
+    UserName: guest
+    Password: guest

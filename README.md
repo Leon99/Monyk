@@ -43,7 +43,7 @@ This will launch Monyk using default setting for development environment:
 
 - a few monitors initially added to help kick-start things
 - *GroundControl* API accessible from browser via https://localhost:42011/swagger
-- an internal Sqlite database re-created each time *GroundControl* starts. Using [PostgreSQL](www.postgresql.org) is recommended for production scenarios.
+- an internal Sqlite database re-created each time *GroundControl* starts. Using [PostgreSQL](https://www.postgresql.org) is recommended for production scenarios.
 
 See [Configuration](#configuration) for details on preparing it to run in the wild.
 #### Hold on, but you said there will be no rocket science?
@@ -54,7 +54,12 @@ Feel free to correct it and submit a PR 🖖
 
 ### Configuration
 
-Configuration can be done either via environment variables or using `appsettings.<environment>.yml`, when `<environment>` can be specified using `ASPNETCORE_ENVIRONMENT` environment variable. Check `appsettings.yml` for the reference.
+Configuration can be done using any of the following methods (in order of priority, starting with the highest):
+1. command line parameters;
+2. environment variables;
+3. using `appsettings.<environment>.yml`, when `<environment>` can be specified using `ASPNETCORE_ENVIRONMENT` environment variable.
+
+Check `appsettings.yml` for the reference on available settings.
 
 When configuring using environment variables, `__` can be used as a delimiter in hierarchical keys. Example:
 ```yaml

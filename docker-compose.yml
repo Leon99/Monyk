@@ -6,15 +6,24 @@ services:
     build:
       context: .
       dockerfile: src/Monyk.GroundControl.Main/Dockerfile
+    depends_on:
+      - rabbitmq
 
   monyk.probe.main:
     image: ${DOCKER_REGISTRY-}monykprobemain
     build:
       context: .
       dockerfile: src/Monyk.Probe.Main/Dockerfile
+    depends_on:
+      - rabbitmq
 
   monyk.lab.main:
     image: ${DOCKER_REGISTRY-}monyklabmain
     build:
       context: .
       dockerfile: src/Monyk.Lab.Main/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: 'rabbitmq:3-management'
