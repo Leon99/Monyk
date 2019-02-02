@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Polly;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.Client.Exceptions;
 
 namespace Monyk.Common.Communicator
 {
@@ -24,14 +27,29 @@ namespace Monyk.Common.Communicator
 
     public class Transceiver<T> : TransceiverBase, ITransmitter<T>, IReceiver<T>, IDisposable
     {
+        private readonly ILogger<Transceiver<T>> _logger;
         public event EventHandler<T> Received;
 
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public Transceiver(IConnectionFactory factory)
+        public Transceiver(IConnectionFactory factory, ILogger<Transceiver<T>> logger)
         {
-            _connection = factory.CreateConnection();
+            _logger = logger;
+            var retryDelay = TimeSpan.FromSeconds(10);
+            var retryCount = 3;
+            IConnection connection = null;
+            Policy
+                .Handle<BrokerUnreachableException>()
+                .Or<ConnectFailureException>()
+                .WaitAndRetry(
+                    retryCount, 
+                    i => retryDelay,
+                    (ex, delay, i, ctx) => 
+                        _logger.LogWarning($"Unable to connect to RabbitMQ. Will retry in {delay.TotalSeconds} seconds {retryCount - i} more time(s)."))
+                .Execute(() => 
+                    connection = factory.CreateConnection());
+            _connection = connection;
             _channel = _connection.CreateModel();
         }
 
