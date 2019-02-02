@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj" />
+    <ProjectReference Include="..\Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj" />
     <ProjectReference Include="..\Monyk.Common.Models\Monyk.Common.Models.csproj" />
     <ProjectReference Include="..\Monyk.Common.Startup\Monyk.Common.Startup.csproj" />
   </ItemGroup>

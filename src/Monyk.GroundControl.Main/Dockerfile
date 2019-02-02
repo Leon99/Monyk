@@ -9,7 +9,7 @@ COPY src/Monyk.GroundControl.Main/Monyk.GroundControl.Main.csproj src/Monyk.Grou
 COPY src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj src/Monyk.Common.Communicator/
 COPY src/Monyk.GroundControl.Db/Monyk.GroundControl.Db.csproj src/Monyk.GroundControl.Db/
 COPY src/Monyk.Common.Models/Monyk.Common.Models.csproj src/Monyk.Common.Models/
-COPY Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj Monyk.GroundControl.Models/
+COPY src/Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj src/Monyk.GroundControl.Models/
 COPY src/Monyk.GroundControl.Services/Monyk.GroundControl.Services.csproj src/Monyk.GroundControl.Services/
 COPY src/Monyk.Common.Startup/Monyk.Common.Startup.csproj src/Monyk.Common.Startup/
 RUN dotnet restore src/Monyk.GroundControl.Main/Monyk.GroundControl.Main.csproj

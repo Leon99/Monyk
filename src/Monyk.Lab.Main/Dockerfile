@@ -6,8 +6,8 @@ EXPOSE 443
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY src/Monyk.Lab.Main/Monyk.Lab.Main.csproj src/Monyk.Lab.Main/
-COPY Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj Monyk.GroundControl.ApiClient/
-COPY Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj Monyk.GroundControl.Models/
+COPY src/Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj src/Monyk.GroundControl.ApiClient/
+COPY src/Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj src/Monyk.GroundControl.Models/
 COPY src/Monyk.Common.Models/Monyk.Common.Models.csproj src/Monyk.Common.Models/
 COPY src/Monyk.Common.Startup/Monyk.Common.Startup.csproj src/Monyk.Common.Startup/
 COPY src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj src/Monyk.Common.Communicator/

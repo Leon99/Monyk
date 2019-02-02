@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Refit" Version="4.6.58" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj" />
+    <ProjectReference Include="..\Monyk.Common.Models\Monyk.Common.Models.csproj" />
   </ItemGroup>
 
 </Project>

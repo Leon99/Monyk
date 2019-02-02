@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj" />
+    <ProjectReference Include="..\Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj" />
     <ProjectReference Include="..\Monyk.Common.Models\Monyk.Common.Models.csproj" />
   </ItemGroup>
 
