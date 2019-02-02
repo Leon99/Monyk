@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -21,6 +21,12 @@
     <ProjectReference Include="..\Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj" />
     <ProjectReference Include="..\Monyk.Common.Models\Monyk.Common.Models.csproj" />
     <ProjectReference Include="..\Monyk.Common.Startup\Monyk.Common.Startup.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings*.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

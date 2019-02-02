@@ -30,4 +30,10 @@
     <ProjectReference Include="..\Monyk.Common.Communicator\Monyk.Common.Communicator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings*.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
