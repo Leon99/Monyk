@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace Monyk.Probe.Checkers
     {
         public IPStatus Status { get;set; }
         public TimeSpan RoundtripTime { get; set; }
+        public IPAddress IPAddress { get; set; }
     }
 
     public class Ping : IPing
@@ -43,6 +45,7 @@ namespace Monyk.Probe.Checkers
             return new PingReply
             {
                 Status = reply.Status,
+                IPAddress = reply.Address,
                 RoundtripTime = TimeSpan.FromMilliseconds(reply.RoundtripTime)
             };
         }

@@ -26,6 +26,7 @@ namespace Monyk.Probe.Checkers
                 return new CheckResult
                 {
                     Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure,
+                    Description = $"Resolved IP Address: {result.IPAddress}",
                     CompletionTime = result.RoundtripTime
                 };
             }

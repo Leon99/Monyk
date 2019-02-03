@@ -34,6 +34,7 @@ namespace Monyk.Probe.Checkers
             return new CheckResult
             {
                 Status = response.IsSuccessStatusCode ? CheckResultStatus.Success : CheckResultStatus.Failure,
+                Description = $"Received status code: {response.StatusCode} {response.ReasonPhrase}"
             };
         }
     }
