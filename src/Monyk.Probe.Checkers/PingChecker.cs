@@ -8,13 +8,13 @@ namespace Monyk.Probe.Checkers
 {
     public class PingChecker : IChecker
     {
-        private readonly IPingFactory _pingFactory;
         private readonly ILogger<PingChecker> _logger;
+        private readonly IPingFactory _pingFactory;
 
-        public PingChecker(IPingFactory pingFactory, ILogger<PingChecker> logger)
+        public PingChecker(ILogger<PingChecker> logger, IPingFactory pingFactory)
         {
-            _pingFactory = pingFactory;
             _logger = logger;
+            _pingFactory = pingFactory;
         }
 
         public async Task<CheckResult> RunCheckAsync(CheckConfiguration config)
@@ -33,7 +33,7 @@ namespace Monyk.Probe.Checkers
                 _logger.LogError(ex, null);
                 return new CheckResult
                 {
-                    Status = CheckResultStatus.Failure, Description = ex.Message
+                    Status = CheckResultStatus.Failure, Description = ex.InnerException?.Message ?? ex.Message
                 };
             }
         }

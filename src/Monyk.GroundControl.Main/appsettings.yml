@@ -1,12 +1,10 @@
-﻿Logging:
-  LogLevel:
-    Default: Warning
-AllowedHosts: "*"
-Monyk.GroundControl:
-  DatabaseType: '<required, Sqlite|Postgres>'
-Monyk.Common.Communicator:
+﻿Communicator:
   RabbitMQ:
-    Host: '<required>'
-    VHost: '<required>'
-    UserName: '<required>'
-    Password: '<required>'
+    Host: <required>
+    VHost: <required>
+    UserName: <required>
+    Password: <required>
+GroundControl:
+  Database:
+    Type: '<Sqlite|Postgres, required>'
+    ConnectionString: <required>

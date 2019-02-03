@@ -1,16 +1,12 @@
-﻿Logging:
-  LogLevel:
-    Default: Warning
-AllowedHosts: "*"
-Monyk.Common.Communicator:
+﻿Communicator:
   RabbitMQ:
-    Host: '<env. specific>'
-    VHost: '<env. specific>'
-    UserName: '<env. specific>'
-    Password: '<env. specific secret>'
-Monyk.Lab.Main:
-  GroundControlBaseUrl: '<env. specific>'
+    Host: <required>
+    VHost: <required>
+    UserName: <required>
+    Password: <required>
+Lab:
+  GroundControlBaseUrl: <required>
   ResultProcessors:
     SlackNotifier:
-      WebHooks: '<env. specific secrets (list)>'
+      WebHooks: <env. specific secrets (list)>
         

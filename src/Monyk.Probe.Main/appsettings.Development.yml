@@ -1,11 +1,6 @@
-﻿Logging:
-  LogLevel:
-    Default: Debug
-    System: Information
-    Microsoft: Information
-Monyk.Common.Communicator:
+﻿Communicator:
   RabbitMQ:
     Host: localhost
-    VHost: '/'
+    VHost: /
     UserName: guest
     Password: guest

@@ -27,13 +27,13 @@ namespace Monyk.Common.Communicator
 
     public class Transceiver<T> : TransceiverBase, ITransmitter<T>, IReceiver<T>, IDisposable
     {
-        private readonly ILogger<Transceiver<T>> _logger;
         public event EventHandler<T> Received;
 
+        private readonly ILogger<Transceiver<T>> _logger;
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public Transceiver(IConnectionFactory factory, ILogger<Transceiver<T>> logger)
+        public Transceiver(ILogger<Transceiver<T>> logger, IConnectionFactory factory)
         {
             _logger = logger;
             var retryDelay = TimeSpan.FromSeconds(10);

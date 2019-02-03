@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Monyk.Common.Models;
 using Monyk.GroundControl.ApiClient;
 using Monyk.GroundControl.Models;
@@ -16,13 +17,15 @@ namespace Monyk.Lab.Main.Services
 
     public class SlackNotifier : IResultProcessor
     {
+        private readonly ILogger<SlackNotifier> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly SlackNotifierSettings _settings;
         private readonly IGroundControlApi _gcApi;
         private static readonly JsonMediaTypeFormatter Formatter = new JsonMediaTypeFormatter();
 
-        public SlackNotifier(IHttpClientFactory httpClientFactory, SlackNotifierSettings settings, IGroundControlApi gcApi)
+        public SlackNotifier(ILogger<SlackNotifier> logger, IHttpClientFactory httpClientFactory, SlackNotifierSettings settings, IGroundControlApi gcApi)
         {
+            _logger = logger;
             _httpClientFactory = httpClientFactory;
             _settings = settings;
             _gcApi = gcApi;
@@ -40,7 +43,7 @@ namespace Monyk.Lab.Main.Services
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex);
+                    _logger.LogError(ex, "Unable to retrieve monitor details");
                 }
 
                 if (monitor != null)

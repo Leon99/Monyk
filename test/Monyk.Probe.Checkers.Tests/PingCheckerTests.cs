@@ -29,7 +29,7 @@ namespace Monyk.Probe.Checkers.Tests
                         });
                     return pingMock.Object;
                 });
-            var pingChecker = new PingChecker(pingFactoryMock.Object, Mock.Of<ILogger<PingChecker>>());
+            var pingChecker = new PingChecker(Mock.Of<ILogger<PingChecker>>(), pingFactoryMock.Object);
             var config = new CheckConfiguration
             {
                 Target = "foo"

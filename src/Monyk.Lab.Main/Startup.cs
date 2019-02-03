@@ -30,10 +30,10 @@ namespace Monyk.Lab.Main
 
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
-            services.AddSingleton(_configuration.GetSection("Monyk.Lab.Main:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>());
+            services.AddSingleton(_configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>());
             services.AddSingleton<IResultProcessor, SlackNotifier>();
             services.AddRefitClient<IGroundControlApi>()
-                .ConfigureHttpClient(client => client.BaseAddress = new Uri(_configuration["Monyk.Lab.Main:GroundControlBaseUrl"]));
+                .ConfigureHttpClient(client => client.BaseAddress = new Uri(_configuration["Lab:GroundControlBaseUrl"]));
 
             services.AddHostedService<LabService>();
         }

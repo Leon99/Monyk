@@ -6,9 +6,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=42111
-      - Monyk.Common.Communicator__RabbitMQ__Host=rabbitmq
-      - Monyk.GroundControl__DatabaseType=postgres
-      - "ConnectionStrings__MainDb=Host=postgres;Username=postgres;Password=postgres;Database=monyk"
+      - MONYK_Communicator__RabbitMQ__Host=rabbitmq
+      - MONYK_GroundControl__Database__Type=postgres
+      - MONYK_GroundControl__Database__ConnectionString=Host=postgres;Username=postgres;Password=postgres;Database=monyk
     ports:
       - "42101:80"
       - "42111:443"
@@ -21,7 +21,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=42112
-      - Monyk.Common.Communicator__RabbitMQ__Host=rabbitmq
+      - MONYK_Communicator__RabbitMQ__Host=rabbitmq
     ports:
       - "42102:80"
       - "42112:443"
@@ -34,7 +34,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=42113
-      - Monyk.Common.Communicator__RabbitMQ__Host=rabbitmq
+      - MONYK_Communicator__RabbitMQ__Host=rabbitmq
+      - MONYK_Lab__GroundControlBaseUrl=http://monyk.groundcontrol.main/api/v1
     ports:
       - "42103:80"
       - "42113:443"

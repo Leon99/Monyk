@@ -9,7 +9,7 @@ namespace Monyk.Common.Startup
     {
         public static IServiceCollection AddRabbitMQConnectionFactory(this IServiceCollection services, IConfiguration configuration)
         {
-            var communicatorSettings = configuration.GetSection("Monyk.Common.Communicator").Get<CommunicatorSettings>();
+            var communicatorSettings = configuration.GetSection("Communicator").Get<CommunicatorSettings>();
             var factory = new ConnectionFactory
             {
                 HostName = communicatorSettings.RabbitMQ.Host,

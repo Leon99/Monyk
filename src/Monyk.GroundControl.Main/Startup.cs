@@ -26,7 +26,7 @@ namespace Monyk.GroundControl.Main
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
-            _appSettings = _configuration.GetSection("Monyk.GroundControl").Get<GroundControlSettings>();
+            _appSettings = _configuration.GetSection("GroundControl").Get<GroundControlSettings>();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -54,7 +54,7 @@ namespace Monyk.GroundControl.Main
                     Version = "v1"
                 });
             });
-            services.AddDatabase(_appSettings.DatabaseType, _configuration.GetConnectionString("MainDb"));
+            services.AddDatabase(_appSettings.Database.Type, _appSettings.Database.ConnectionString);
 
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<ITransmitter<CheckRequest>, Transceiver<CheckRequest>>();

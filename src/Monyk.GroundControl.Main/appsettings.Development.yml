@@ -1,15 +1,10 @@
-﻿Logging:
-  LogLevel:
-    Default: Debug
-    System: Information
-    Microsoft: Information
-Monyk.GroundControl:
-  DatabaseType: sqlite
-Monyk.Common.Communicator:
+﻿Communicator:
   RabbitMQ:
     Host: localhost
-    VHost: '/'
+    VHost: /
     UserName: guest
     Password: guest
-ConnectionStrings:
-  MainDb: 'Data Source=monyk.db'
+GroundControl:
+  Database:
+    Type: sqlite
+    ConnectionString: Data Source=monyk.db

@@ -31,6 +31,7 @@ cd monyk
 
 #### Run using Docker Compose:
 `docker-compose up`
+
 #### Run manually:
 
 1. [Install RabbitMQ](https://www.rabbitmq.com/download.html)
@@ -39,11 +40,13 @@ cd monyk
 4. Run *Probes*: `dotnet run --project .\src\Monyk.Lab.Main`
 5. Run *Lab*: `dotnet run --project .\src\Monyk.Probe.Main`
 
-This will launch Monyk using default setting for development environment:
+Either method will launch Monyk using default setting for development environment:
 
+- database re-created each time *GroundControl* starts
 - a few monitors initially added to help kick-start things
 - *GroundControl* API accessible from browser via https://localhost:42011/swagger
-- an internal Sqlite database re-created each time *GroundControl* starts. Using [PostgreSQL](https://www.postgresql.org) is recommended for production scenarios.
+- *Lab* is not configured to do any result processing
+- all the components are unsecured
 
 See [Configuration](#configuration) for details on preparing it to run in the wild.
 #### Hold on, but you said there will be no rocket science?
@@ -55,16 +58,20 @@ Feel free to correct it and submit a PR 🖖
 ### Configuration
 
 Configuration can be done using any of the following methods (in order of priority, starting with the highest):
-1. command line parameters;
-2. environment variables;
-3. using `appsettings.<environment>.yml`, when `<environment>` can be specified using `ASPNETCORE_ENVIRONMENT` environment variable.
+
+1. Command line parameters
+2. Environment variables
+3. Using `appsettings.<environment>.yml`, when `<environment>` can be specified using `ASPNETCORE_ENVIRONMENT` environment variable
 
 Check `appsettings.yml` for the reference on available settings.
 
-When configuring using environment variables, `__` can be used as a delimiter in hierarchical keys. Example:
+When configuring using environment variables, use `MONYK_` prefix and `__` as a delimiter in hierarchical keys. List items can be set using an index as another hierarchy level. For example, the following setting from `appsettings.yml`
 ```yaml
-Monyk.Common.Communicator:
-  RabbitMQ:
-    Host: 
+Lab:
+  ResultProcessors:
+    SlackNotifier:
+      WebHooks:
+        - 'https://hooks.slack.com/services/...'
 ```
-can be set using an environment variable `Monyk.Common.Communicator__RabbitMQ__Host`.
+can be set using an environment variable `MONYK_Lab__ResultProcessors__SlackNotifier__WebHooks__0`.
+More examples can be found in `docker-compose.override.yml`.

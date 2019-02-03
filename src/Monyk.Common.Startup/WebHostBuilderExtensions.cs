@@ -15,7 +15,7 @@ namespace Monyk.Common.Startup
                     config.AddUserSecretsForMainAssembly(hostingContext.HostingEnvironment);
                 }
 
-                config.AddEnvironmentVariables();
+                config.AddEnvironmentVariables("MONYK_");
 
                 if (args != null)
                 {
@@ -30,8 +30,8 @@ namespace Monyk.Common.Startup
             {
                 config
                     .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                    .AddYamlFile("appsettings.yml", optional: false)
-                    .AddYamlFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.yml", optional: false);
+                    .AddYamlFile("appsettings.yml", optional: true)
+                    .AddYamlFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.yml", optional: true);
             });
         }
     }
