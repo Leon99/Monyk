@@ -8,6 +8,7 @@ services:
       dockerfile: src/Monyk.GroundControl.Main/Dockerfile
     depends_on:
       - rabbitmq
+      - postgres
 
   monyk.probe.main:
     image: ${DOCKER_REGISTRY-}monykprobemain
@@ -27,3 +28,6 @@ services:
 
   rabbitmq:
     image: 'rabbitmq:3-management'
+
+  postgres:
+    image: postgres:10

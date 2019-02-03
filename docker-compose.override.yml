@@ -7,7 +7,8 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=42111
       - Monyk.Common.Communicator__RabbitMQ__Host=rabbitmq
-      - Monyk.GroundControl__DatabaseType=Pgsql
+      - Monyk.GroundControl__DatabaseType=postgres
+      - "ConnectionStrings__MainDb=Host=postgres;Username=postgres;Password=postgres;Database=monyk"
     ports:
       - "42101:80"
       - "42111:443"
@@ -44,3 +45,7 @@ services:
   rabbitmq:
     ports:
       - "15672:15672"
+
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: postgres
