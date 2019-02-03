@@ -17,7 +17,7 @@ namespace Monyk.GroundControl.Db
             {
                 switch (type)
                 {
-                    case DatabaseType.Pgsql:
+                    case DatabaseType.Postgres:
                         options.UseNpgsql(connectionString);
                         break;
                     case DatabaseType.Sqlite:

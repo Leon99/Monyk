@@ -16,8 +16,8 @@ Failure alerts are sent to Slack.
 
 Monyk consist of the following loosely-coupled components:
 
-1. *GroundControl* allows you to specify *monitors* via its REST API and will take care of triggering the *checks* according to the specifications.  
-2. *Probes* actually perform the checks. You may want to put many of those around the globe.
+1. *GroundControl* allows you to specify *monitors* via its REST API and will take care of triggering the *checks* according to the specifications;
+2. *Probes* actually perform the checks. You may want to put many of those around the globe;
 3. *Lab* processes the results of the checks.
 
 ### OK how do I use it?

@@ -3,10 +3,10 @@
     Default: Warning
 AllowedHosts: "*"
 Monyk.GroundControl:
-  DatabaseType: '<env. specific>'
+  DatabaseType: '<required, Sqlite|Postgres>'
 Monyk.Common.Communicator:
   RabbitMQ:
-    Host: '<env. specific>'
-    VHost: '<env. specific>'
-    UserName: '<env. specific>'
-    Password: '<env. specific secret>'
+    Host: '<required>'
+    VHost: '<required>'
+    UserName: '<required>'
+    Password: '<required>'

@@ -3,6 +3,6 @@
     public enum DatabaseType
     {
         Sqlite,
-        Pgsql
+        Postgres
     }
 }
