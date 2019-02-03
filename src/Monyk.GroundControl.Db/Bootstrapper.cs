@@ -34,9 +34,9 @@ namespace Monyk.GroundControl.Db
         {
             if (db.Database.IsSqlite())
             {
-                if (!File.Exists(Bootstrapper.SqliteFileName))
+                if (!File.Exists(SqliteFileName))
                 {
-                    File.CreateText(Bootstrapper.SqliteFileName).Close();
+                    File.CreateText(SqliteFileName).Close();
                 }
             }
 
@@ -49,7 +49,8 @@ namespace Monyk.GroundControl.Db
                     Target = "https://github.com",
                     Interval = 55,
                     Description = "Happy HTTP monitor",
-                }, new Monitor
+                },
+                new Monitor
                 {
                     Type = MonitorType.Http,
                     Target = "https://foo.bar",
@@ -62,7 +63,8 @@ namespace Monyk.GroundControl.Db
                     Target = "github.com",
                     Interval = 55,
                     Description = "Happy Ping monitor"
-                }, new Monitor
+                },
+                new Monitor
                 {
                     Type = MonitorType.Ping,
                     Target = "foo.bar",
