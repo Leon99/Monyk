@@ -25,7 +25,8 @@ namespace Monyk.Probe.Checkers
                 var result = await ping.SendAsync(config.Target);
                 return new CheckResult
                 {
-                    Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure
+                    Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure,
+                    CompletionTime = result.RoundtripTime
                 };
             }
             catch (Exception ex)

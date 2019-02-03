@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace Monyk.Probe.Checkers
@@ -24,6 +25,7 @@ namespace Monyk.Probe.Checkers
     public class PingReply
     {
         public IPStatus Status { get;set; }
+        public TimeSpan RoundtripTime { get; set; }
     }
 
     public class Ping : IPing
@@ -40,7 +42,8 @@ namespace Monyk.Probe.Checkers
             var reply = await _ping.SendPingAsync(address);
             return new PingReply
             {
-                Status = reply.Status
+                Status = reply.Status,
+                RoundtripTime = TimeSpan.FromMilliseconds(reply.RoundtripTime)
             };
         }
     }
