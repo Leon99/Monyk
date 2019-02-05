@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -93,7 +94,7 @@ namespace Monyk.GroundControl.Main
 
         private static void ScheduleMonitors(MonykDbContext db, MonitorScheduler scheduler)
         {
-            foreach (var monitor in db.Monitors)
+            foreach (var monitor in db.Monitors.Where(m => !m.IsSuspended))
             {
                 scheduler.AddSchedule(monitor);
             }

@@ -47,7 +47,7 @@ namespace Monyk.GroundControl.Db
                 {
                     Type = MonitorType.Http,
                     Target = "https://github.com",
-                    Interval = 55,
+                    Interval = 10,
                     Description = "Happy HTTP monitor",
                 },
                 new Monitor
@@ -68,8 +68,16 @@ namespace Monyk.GroundControl.Db
                 {
                     Type = MonitorType.Ping,
                     Target = "foo.bar",
-                    Interval = 10,
+                    Interval = 55,
                     Description = "Sad Ping monitor"
+                },
+                new Monitor
+                {
+                    Type = MonitorType.Ping,
+                    Target = "suspended.foo.bar",
+                    Interval = 5,
+                    IsSuspended = true,
+                    Description = "Suspended Ping monitor"
                 }
             );
             db.SaveChanges();
