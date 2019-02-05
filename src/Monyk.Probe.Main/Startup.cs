@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Http;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.Common.Startup;
@@ -24,6 +26,7 @@ namespace Monyk.Probe.Main
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            services.Replace(ServiceDescriptor.Singleton<IHttpMessageHandlerBuilderFilter, LoggingHttpMessageHandlerBuilderFilter>());
 
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<IReceiver<CheckRequest>, Transceiver<CheckRequest>>();

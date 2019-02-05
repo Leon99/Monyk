@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Monyk.Common.Models;
@@ -34,7 +35,8 @@ namespace Monyk.Probe.Checkers
             return new CheckResult
             {
                 Status = response.IsSuccessStatusCode ? CheckResultStatus.Success : CheckResultStatus.Failure,
-                Description = $"Received status code: {response.StatusCode} {response.ReasonPhrase}"
+                Description = $"Received status code: {response.StatusCode} {response.ReasonPhrase}",
+                CompletionTime = TimeSpan.ParseExact(response.Headers.GetValues("X-Monyk-ElapsedTime").Single(), "%fff", null)
             };
         }
     }
