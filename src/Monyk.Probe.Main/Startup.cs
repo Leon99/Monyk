@@ -34,10 +34,7 @@ namespace Monyk.Probe.Main
 
             services.AddHostedService<ProbeService>();
 
-            services.AddSingleton<CheckerFactory>();
-            services.AddSingleton<IPingFactory, PingFactory>();
-            services.AddSingleton<IChecker, PingChecker>();
-            services.AddSingleton<IChecker, HttpChecker>();
+            services.AddCheckers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
