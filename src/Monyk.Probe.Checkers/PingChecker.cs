@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,7 @@ namespace Monyk.Probe.Checkers
                 return new CheckResult
                 {
                     Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure,
-                    Description = $"Resolved IP Address: {result.IPAddress}",
+                    Description = !result.IPAddress.Equals(IPAddress.Any) ? $"Resolved IP address: {result.IPAddress}" : "Unable to resolve IP address",
                     CompletionTime = result.RoundtripTime
                 };
             }
