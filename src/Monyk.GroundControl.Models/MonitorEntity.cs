@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Monyk.Common.Models;
 
 namespace Monyk.GroundControl.Models
 {
-    public class Monitor
+    public class MonitorEntity
     {
         public Guid Id { get; set; }
         [Required]
@@ -15,6 +14,7 @@ namespace Monyk.GroundControl.Models
         [Required]
         public int Interval { get; set; }
         public string Description { get; set; }
-        public bool IsSuspended { get; set; }
+        public bool IsStopped { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

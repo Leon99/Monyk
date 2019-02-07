@@ -19,21 +19,24 @@ namespace Monyk.GroundControl.Services
             _scheduler = scheduler;
         }
 
-        public async Task<IEnumerable<Monitor>> GetMonitorsAsReadOnly()
+        public async Task<IEnumerable<MonitorEntity>> GetMonitorsAsReadOnly()
         {
-            return await _db.Monitors.AsNoTracking().ToListAsync();
+            return await _db.Monitors
+                .AsNoTracking()
+                .Where(m => !m.IsDeleted)
+                .ToListAsync();
         }
 
-        public async Task<Monitor> GetMonitor(Guid id)
+        public async Task<MonitorEntity> GetMonitor(Guid id)
         {
             var monitor = await _db.Monitors.FindAsync(id);
 
             return monitor;
         }
 
-        public async Task<bool> TryUpdateMonitor(Guid id, Monitor monitor)
+        public async Task<bool> TryUpdateMonitor(Guid id, MonitorEntity monitorEntity)
         {
-            _db.Entry(monitor).State = EntityState.Modified;
+            _db.Entry(monitorEntity).State = EntityState.Modified;
 
             try
             {
@@ -56,15 +59,17 @@ namespace Monyk.GroundControl.Services
 
         private bool MonitorExists(Guid id)
         {
-            return _db.Monitors.AsNoTracking().Any(e => e.Id == id);
+            return _db.Monitors
+                .AsNoTracking()
+                .Any(e => e.Id == id);
         }
 
 
-        public async Task CreateMonitor(Monitor monitor)
+        public async Task CreateMonitor(MonitorEntity monitorEntity)
         {
-            _db.Monitors.Add(monitor);
+            _db.Monitors.Add(monitorEntity);
             await _db.SaveChangesAsync();
-            _scheduler.AddSchedule(monitor);
+            _scheduler.AddSchedule(monitorEntity);
         }
 
         public async Task<bool> TryDeleteMonitor(Guid id)
@@ -76,7 +81,7 @@ namespace Monyk.GroundControl.Services
             }
             _scheduler.DeleteSchedule(id);
 
-            _db.Monitors.Remove(monitor);
+            monitor.IsDeleted = true;
             await _db.SaveChangesAsync();
 
             return true;

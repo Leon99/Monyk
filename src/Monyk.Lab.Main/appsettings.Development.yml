@@ -5,4 +5,4 @@
     UserName: guest
     Password: guest
 Lab:
-  GroundControlBaseUrl: http://localhost:42003/api/v1
+  GroundControlBaseUrl: http://localhost:42003

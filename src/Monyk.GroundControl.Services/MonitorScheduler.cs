@@ -20,24 +20,24 @@ namespace Monyk.GroundControl.Services
             _transmitter = transmitter;
         }
 
-        private readonly Dictionary<Guid, (ITimer<Monitor>, Monitor)> _schedules = new Dictionary<Guid, (ITimer<Monitor>, Monitor)>();
+        private readonly Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)> _schedules = new Dictionary<Guid, (ITimer<MonitorEntity>, MonitorEntity)>();
 
-        public void AddSchedule(Monitor monitor)
+        public void AddSchedule(MonitorEntity monitorEntity)
         {
-            var timer = _timerFactory.Create(TimeSpan.FromSeconds(monitor.Interval), monitor, TimerElapsedHandler);
-            var scheduleData = (timer, monitor);
-            _schedules.Add(monitor.Id, scheduleData);
+            var timer = _timerFactory.Create(TimeSpan.FromSeconds(monitorEntity.Interval), monitorEntity, TimerElapsedHandler);
+            var scheduleData = (timer, monitor: monitorEntity);
+            _schedules.Add(monitorEntity.Id, scheduleData);
             timer.Start();
         }
 
-        private void TimerElapsedHandler(Monitor monitor)
+        private void TimerElapsedHandler(MonitorEntity monitorEntity)
         {
-            PublishCheckRequest(monitor);
+            PublishCheckRequest(monitorEntity);
         }
 
-        private void PublishCheckRequest(Monitor monitor)
+        private void PublishCheckRequest(MonitorEntity monitorEntity)
         {
-            var request = Mapper.Map(monitor);
+            var request = Mapper.Map(monitorEntity);
             request.CheckId = Guid.NewGuid();
             _logger.LogInformation($"Requesting check {request.CheckId}");
             _transmitter.Transmit(request);

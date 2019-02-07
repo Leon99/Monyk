@@ -43,41 +43,49 @@ namespace Monyk.GroundControl.Db
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
             db.Monitors.AddRange(
-                new Monitor
+                new MonitorEntity
                 {
                     Type = MonitorType.Http,
                     Target = "https://github.com",
                     Interval = 10,
                     Description = "Happy HTTP monitor",
                 },
-                new Monitor
+                new MonitorEntity
                 {
                     Type = MonitorType.Http,
                     Target = "https://foo.bar",
                     Interval = 55,
                     Description = "Sad HTTP monitor",
                 },
-                new Monitor
+                new MonitorEntity
                 {
                     Type = MonitorType.Ping,
                     Target = "github.com",
                     Interval = 55,
                     Description = "Happy Ping monitor"
                 },
-                new Monitor
+                new MonitorEntity
                 {
                     Type = MonitorType.Ping,
                     Target = "foo.bar",
                     Interval = 55,
                     Description = "Sad Ping monitor"
                 },
-                new Monitor
+                new MonitorEntity
                 {
                     Type = MonitorType.Ping,
-                    Target = "suspended.foo.bar",
+                    Target = "stopped.foo.bar",
                     Interval = 5,
-                    IsSuspended = true,
-                    Description = "Suspended Ping monitor"
+                    IsStopped = true,
+                    Description = "Stopped Ping monitor"
+                },
+                new MonitorEntity
+                {
+                    Type = MonitorType.Ping,
+                    Target = "deleted.foo.bar",
+                    Interval = 5,
+                    IsDeleted = true,
+                    Description = "Deleted Ping monitor"
                 }
             );
             db.SaveChanges();

@@ -36,21 +36,21 @@ namespace Monyk.Lab.Main.Services
             var httpClient = _httpClientFactory.CreateClient();
             if (result.Status != CheckResultStatus.Success)
             {
-                Monitor monitor = null;
+                MonitorEntity monitorEntity = null;
                 try
                 {
-                    monitor = await _gcApi.GetMonitorAsync(result.MonitorId);
+                    monitorEntity = await _gcApi.GetMonitorAsync(result.MonitorId);
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Unable to retrieve monitor details");
                 }
 
-                if (monitor != null)
+                if (monitorEntity != null)
                 {
                     foreach (var webHook in _settings.WebHooks)
                     {
-                        await httpClient.PostAsync(webHook, new {text = $"{monitor.Type} check on {monitor.Target} (_{monitor.Description}_) resulted in *{result.Status}*. Details: _{result.Description}_"}, Formatter);
+                        await httpClient.PostAsync(webHook, new {text = $"{monitorEntity.Type} check on {monitorEntity.Target} (_{monitorEntity.Description}_) resulted in *{result.Status}*. Details: _{result.Description}_"}, Formatter);
                     }
                 }
             }

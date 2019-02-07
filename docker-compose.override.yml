@@ -35,7 +35,7 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=42113
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
-      - MONYK_Lab__GroundControlBaseUrl=http://monyk.groundcontrol.main/api/v1
+      - MONYK_Lab__GroundControlBaseUrl=http://monyk.groundcontrol.main
     ports:
       - "42103:80"
       - "42113:443"

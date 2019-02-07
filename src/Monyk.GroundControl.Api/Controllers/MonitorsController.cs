@@ -8,7 +8,7 @@ using Monyk.GroundControl.Services;
 
 namespace Monyk.GroundControl.Main.Controllers
 {
-    [Route("api/v1/monitors")]
+    [Route("monitors")]
     [Produces("application/json")]
     public class MonitorsController : ControllerBase
     {
@@ -20,29 +20,29 @@ namespace Monyk.GroundControl.Main.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Monitor>>> GetMonitors()
+        public async Task<ActionResult<IEnumerable<MonitorEntity>>> GetMonitors()
         {
             var entities = await _service.GetMonitorsAsReadOnly();
-            return entities.Any() ? (ActionResult<IEnumerable<Monitor>>) Ok(entities) : NotFound();
+            return entities.Any() ? (ActionResult<IEnumerable<MonitorEntity>>) Ok(entities) : NotFound();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Monitor>> GetMonitor(Guid id)
+        public async Task<ActionResult<MonitorEntity>> GetMonitor(Guid id)
         {
             var monitor = await _service.GetMonitor(id);
 
-            return monitor ?? (ActionResult<Monitor>)NotFound();
+            return monitor ?? (ActionResult<MonitorEntity>)NotFound();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMonitor(Guid id, Monitor monitor)
+        public async Task<IActionResult> UpdateMonitor(Guid id, MonitorEntity monitorEntity)
         {
-            if (id != monitor.Id)
+            if (id != monitorEntity.Id)
             {
                 return BadRequest();
             }
 
-            if (!await _service.TryUpdateMonitor(id, monitor))
+            if (!await _service.TryUpdateMonitor(id, monitorEntity))
             {
                 return NotFound();
             }
@@ -51,11 +51,11 @@ namespace Monyk.GroundControl.Main.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Monitor>> CreateMonitor(Monitor monitor)
+        public async Task<ActionResult<MonitorEntity>> CreateMonitor(MonitorEntity monitorEntity)
         {
-            await _service.CreateMonitor(monitor);
+            await _service.CreateMonitor(monitorEntity);
 
-            return CreatedAtAction(nameof(GetMonitor), new {id = monitor.Id}, monitor);
+            return CreatedAtAction(nameof(GetMonitor), new {id = monitorEntity.Id}, monitorEntity);
         }
 
         [HttpDelete("{id}")]

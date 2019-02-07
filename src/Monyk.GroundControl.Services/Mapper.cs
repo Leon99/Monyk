@@ -5,15 +5,15 @@ namespace Monyk.GroundControl.Services
 {
     public static class Mapper
     {
-        public static CheckRequest Map(Monitor monitor)
+        public static CheckRequest Map(MonitorEntity monitorEntity)
         {
             return new CheckRequest
             {
-                MonitorId = monitor.Id,
-                Type = monitor.Type,
+                MonitorId = monitorEntity.Id,
+                Type = monitorEntity.Type,
                 Configuration = new CheckConfiguration
                 {
-                    Target = monitor.Target,
+                    Target = monitorEntity.Target,
                 }
             };
         }

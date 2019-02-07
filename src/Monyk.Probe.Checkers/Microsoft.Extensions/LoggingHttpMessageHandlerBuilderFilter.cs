@@ -42,7 +42,9 @@ namespace Microsoft.Extensions.Http
                 var innerLogger = _loggerFactory.CreateLogger($"System.Net.Http.HttpClient.{loggerName}.ClientHandler");
 
                 // The 'scope' handler goes first so it can surround everything.
+#pragma warning disable CS0436 // Type conflicts with imported type
                 builder.AdditionalHandlers.Insert(0, new LoggingScopeHttpMessageHandler(outerLogger));
+#pragma warning restore CS0436 // Type conflicts with imported type
 
                 // We want this handler to be last so we can log details about the request after
                 // service discovery and security happen.

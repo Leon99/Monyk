@@ -8,6 +8,6 @@ namespace Monyk.GroundControl.ApiClient
     public interface IGroundControlApi
     {
         [Get("/monitors/{id}")]
-        Task<Monitor> GetMonitorAsync(Guid id);
+        Task<MonitorEntity> GetMonitorAsync(Guid id);
     }
 }

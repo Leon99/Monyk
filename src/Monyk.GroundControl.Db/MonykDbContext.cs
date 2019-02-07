@@ -9,6 +9,6 @@ namespace Monyk.GroundControl.Db
         {
         }
 
-        public DbSet<Monitor> Monitors { get; set; }
+        public DbSet<MonitorEntity> Monitors { get; set; }
     }
 }

@@ -94,7 +94,7 @@ namespace Monyk.GroundControl.Main
 
         private static void ScheduleMonitors(MonykDbContext db, MonitorScheduler scheduler)
         {
-            foreach (var monitor in db.Monitors.Where(m => !m.IsSuspended))
+            foreach (var monitor in db.Monitors.Where(m => !m.IsDeleted && !m.IsStopped))
             {
                 scheduler.AddSchedule(monitor);
             }
