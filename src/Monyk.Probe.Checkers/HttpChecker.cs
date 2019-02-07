@@ -36,7 +36,7 @@ namespace Monyk.Probe.Checkers
             {
                 Status = response.IsSuccessStatusCode ? CheckResultStatus.Success : CheckResultStatus.Failure,
                 Description = $"Received status code: {response.StatusCode} {response.ReasonPhrase}",
-                CompletionTime = TimeSpan.ParseExact(response.Headers.GetValues("X-Monyk-ElapsedTime").Single(), "%fff", null)
+                CompletionTime = TimeSpan.FromMilliseconds(double.Parse(response.Headers.GetValues("X-Monyk-ElapsedTime").Single()))
             };
         }
     }
