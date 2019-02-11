@@ -9,15 +9,15 @@ It's like UptimeRobot, only open-source, extensible, self-hosted, cross-platform
 
 ### What exactly can it do?
 
-At the moment, it can monitor web sites and ping hosts from multiple locations.
+At the moment, it can check HTTP endpoints and ping hosts from multiple locations.
 Failure alerts are sent to Slack.
 
 ### Anything else I need to know before trying it?
 
 Monyk consist of the following loosely-coupled components:
 
-1. *GroundControl* allows you to specify *monitors* via its REST API and will take care of triggering the *checks* according to the specifications;
-2. *Probes* actually perform the checks. You may want to put many of those around the globe;
+1. *GroundControl* allows you to specify *monitors* via its REST API and will take care of triggering the *checks* according to the specifications.
+2. *Probes* actually perform the checks. You may want to put many of those around the globe - it's optimized for minimal resource consumption.
 3. *Lab* processes the results of the checks.
 
 ### OK how do I use it?
@@ -29,10 +29,10 @@ git clone https://github.com/leon99/monyk
 cd monyk
 ```
 
-#### Run using Docker Compose:
+#### Run using Docker Compose
 `docker-compose up`
 
-#### Run manually:
+#### Run manually
 
 1. [Install RabbitMQ](https://www.rabbitmq.com/download.html)
 2. Make sure that you have the latest release of [.NET Core SDK](https://dotnet.microsoft.com/download) installed
