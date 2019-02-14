@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Monyk.Common.Communicator;
@@ -12,7 +11,6 @@ using Monyk.Common.Models;
 using Monyk.Common.Startup;
 using Monyk.GroundControl.Db;
 using Monyk.GroundControl.Main.Models;
-using Monyk.GroundControl.Models;
 using Monyk.GroundControl.Services;
 using Swashbuckle.AspNetCore.Swagger;
 
