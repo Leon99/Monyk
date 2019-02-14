@@ -5,13 +5,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=42111
+      - ASPNETCORE_HTTPS_PORT=42113
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
       - MONYK_GroundControl__Database__Type=postgres
       - MONYK_GroundControl__Database__ConnectionString=Host=postgres;Username=postgres;Password=postgres;Database=monyk
     ports:
-      - "42101:80"
-      - "42111:443"
+      - "42112:80"
+      - "42113:443"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -20,11 +20,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=42112
+      - ASPNETCORE_HTTPS_PORT=42123
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
     ports:
-      - "42102:80"
-      - "42112:443"
+      - "42122:80"
+      - "42123:443"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -33,12 +33,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=42113
+      - ASPNETCORE_HTTPS_PORT=42133
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
       - MONYK_Lab__GroundControlBaseUrl=http://monyk.groundcontrol.main
     ports:
-      - "42103:80"
-      - "42113:443"
+      - "42132:80"
+      - "42133:443"
     volumes:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

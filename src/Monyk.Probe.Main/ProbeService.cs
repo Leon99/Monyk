@@ -41,11 +41,10 @@ namespace Monyk.Probe.Main
                 _logger.LogError("Incomplete message received");
                 return;
             }
-            _logger.LogInformation($"({request.Type}) {request.Configuration.Target}");
             var checker = _checkerFactory.Create(request.Type);
             try
             {
-                _logger.LogInformation($"Running check {request.CheckId}");
+                _logger.LogInformation("Running check {CheckId} ({MonitorId})", request.CheckId, request.MonitorId);
                 var result = await checker.RunCheckAsync(request.Configuration);
                 result.CheckId = request.CheckId;
                 result.MonitorId = request.MonitorId;

@@ -33,7 +33,7 @@ namespace Monyk.Probe.Checkers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, null);
+                _logger.LogWarning(ex, ex.Message);
                 return new CheckResult
                 {
                     Status = CheckResultStatus.Failure, Description = ex.InnerException?.Message ?? ex.Message

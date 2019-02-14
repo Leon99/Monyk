@@ -39,7 +39,7 @@ namespace Monyk.GroundControl.Services
         {
             var request = Mapper.Map(monitorEntity);
             request.CheckId = Guid.NewGuid();
-            _logger.LogInformation($"Requesting check {request.CheckId}");
+            _logger.LogInformation("Requesting check {CheckId}", request.CheckId);
             _transmitter.Transmit(request);
         }
 
