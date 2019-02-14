@@ -35,9 +35,9 @@ namespace Monyk.GroundControl.Main
             services.AddMvcCore()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddApiExplorer()
-                .AddAuthorization()
+                //.AddAuthorization()
                 .AddFormatterMappings()
-                .AddCacheTagHelper()
+                //.AddCacheTagHelper()
                 .AddDataAnnotations()
                 .AddJsonFormatters(settings =>
                 {

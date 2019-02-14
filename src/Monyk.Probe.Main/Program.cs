@@ -16,8 +16,10 @@ namespace Monyk.Probe.Main
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost
-                .CreateDefaultBuilder<Startup>(args)
-                .UseAppConfigurationWithYaml(args)
+                    .CreateDefaultBuilder(args)
+                    .UseAppConfigurationWithYaml(args)
+                    .ConfigureLogging()
+                    .UseStartup<Startup>()
                 ;
         }
     }

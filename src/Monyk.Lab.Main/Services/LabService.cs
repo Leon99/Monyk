@@ -31,7 +31,7 @@ namespace Monyk.Lab.Main.Services
 
         private async Task ProcessResultAsync(CheckResult result)
         {
-            _logger.LogInformation($"Processing result of check {result.CheckId}");
+            _logger.LogInformation("Processing result of check {CheckId}", result.CheckId);
             foreach (var processor in _processors)
             {
                 await processor.RunAsync(result);

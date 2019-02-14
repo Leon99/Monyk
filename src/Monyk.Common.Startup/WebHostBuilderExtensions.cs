@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Monyk.Common.Startup
 {
@@ -32,6 +33,18 @@ namespace Monyk.Common.Startup
                     .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                     .AddYamlFile("appsettings.yml", optional: true)
                     .AddYamlFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.yml", optional: true);
+            });
+        }
+
+        public static IWebHostBuilder ConfigureLogging(this IWebHostBuilder hostBuilder)
+        {
+            return hostBuilder.ConfigureLogging((context, builder) =>
+            {
+                var config = context.Configuration.GetSection("Seq");
+                if (config != null)
+                {
+                    builder.AddSeq(config);
+                }
             });
         }
     }

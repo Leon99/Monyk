@@ -16,8 +16,10 @@ namespace Monyk.GroundControl.Main
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost
-                    .CreateDefaultBuilder<Startup>(args)
+                    .CreateDefaultBuilder(args)
                     .UseAppConfigurationWithYaml(args)
+                    .ConfigureLogging()
+                    .UseStartup<Startup>()
                 ;
         }
     }

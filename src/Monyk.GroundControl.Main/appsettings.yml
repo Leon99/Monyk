@@ -1,4 +1,7 @@
-﻿Communicator:
+﻿Seq:
+  ServerUrl: http://seq:5341
+  
+Communicator:
   RabbitMQ:
     Host: <required>
     VHost: <required>

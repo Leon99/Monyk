@@ -31,3 +31,8 @@ services:
 
   postgres:
     image: postgres:10
+
+  seq:
+    image: datalust/seq
+    environment:
+      - ACCEPT_EULA=Y

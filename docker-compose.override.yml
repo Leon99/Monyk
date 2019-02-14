@@ -50,3 +50,9 @@ services:
   postgres:
     environment:
       POSTGRES_PASSWORD: postgres
+  
+  seq:
+    volumes:
+      - "${APPDATA}/seq/data:/data"
+    ports:
+      - "5341:80"
