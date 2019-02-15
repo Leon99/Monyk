@@ -7,4 +7,4 @@
 GroundControl:
   Database:
     Type: sqlite
-    ConnectionString: Data Source=monyk.db
+    ConnectionString: Data Source=GroundControl.db

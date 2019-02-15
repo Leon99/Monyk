@@ -9,7 +9,7 @@ namespace Monyk.GroundControl.Db
 {
     public static class Bootstrapper
     {
-        private const string SqliteFileName = "monyk.db";
+        private const string SqliteFileName = "GroundControl.db";
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, DatabaseType type, string connectionString)
         {

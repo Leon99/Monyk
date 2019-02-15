@@ -10,7 +10,9 @@ namespace Monyk.Common.Startup
         {
             var assembly = Assembly.Load(new AssemblyName(hostingEnvironment.ApplicationName));
             if (assembly != null)
+            {
                 config.AddUserSecrets(assembly, true);
+            }
         }
     }
 }
