@@ -1,5 +1,7 @@
 # Monyk
 
+[![Build Status](https://dev.azure.com/monyk/Monyk/_apis/build/status/Leon99.Monyk?branchName=master)](https://dev.azure.com/monyk/Monyk/_build/latest?definitionId=1&branchName=master)
+
 ## Overview
 
 ### What is this?
