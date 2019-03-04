@@ -41,6 +41,7 @@ cd monyk
 3. Run *GroundControl*: `dotnet run --project .\src\Monyk.GroundControl.Main`
 4. Run *Probes*: `dotnet run --project .\src\Monyk.Lab.Main`
 5. Run *Lab*: `dotnet run --project .\src\Monyk.Probe.Main`
+6. (Optional) [Install Seq](https://docs.getseq.net/docs/getting-started-with-docker) to make use of semantic logging support
 
 Either method will launch Monyk using default setting for development environment:
 
