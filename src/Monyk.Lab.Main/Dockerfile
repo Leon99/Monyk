@@ -1,23 +1,23 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime-stretch-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM microsoft/dotnet:2.2-sdk-stretch AS build
 WORKDIR /src
-COPY src/Monyk.Lab.Main/Monyk.Lab.Main.csproj src/Monyk.Lab.Main/
-COPY src/Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj src/Monyk.GroundControl.ApiClient/
-COPY src/Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj src/Monyk.GroundControl.Models/
-COPY src/Monyk.Common.Models/Monyk.Common.Models.csproj src/Monyk.Common.Models/
-COPY src/Monyk.Common.Startup/Monyk.Common.Startup.csproj src/Monyk.Common.Startup/
-COPY src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj src/Monyk.Common.Communicator/
-RUN dotnet restore src/Monyk.Lab.Main/Monyk.Lab.Main.csproj
+COPY ["src/Monyk.Lab.Main/Monyk.Lab.Main.csproj", "src/Monyk.Lab.Main/"]
+COPY ["src/Monyk.Common.Models/Monyk.Common.Models.csproj", "src/Monyk.Common.Models/"]
+COPY ["src/Monyk.Common.Startup/Monyk.Common.Startup.csproj", "src/Monyk.Common.Startup/"]
+COPY ["src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj", "src/Monyk.Common.Communicator/"]
+COPY ["src/Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj", "src/Monyk.GroundControl.ApiClient/"]
+COPY ["src/Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj", "src/Monyk.GroundControl.Models/"]
+RUN dotnet restore "src/Monyk.Lab.Main/Monyk.Lab.Main.csproj"
 COPY . .
-WORKDIR /src/src/Monyk.Lab.Main
-RUN dotnet build Monyk.Lab.Main.csproj -c Release -o /app
+WORKDIR "/src/src/Monyk.Lab.Main"
+RUN dotnet build "Monyk.Lab.Main.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish Monyk.Lab.Main.csproj -c Release -o /app
+RUN dotnet publish "Monyk.Lab.Main.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
