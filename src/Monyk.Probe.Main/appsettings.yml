@@ -1,6 +1,6 @@
 ﻿Seq:
-  ServerUrl: http://seq:5341
-
+  ServerUrl: <optional>
+  
 Communicator:
   RabbitMQ:
     Host: <required>

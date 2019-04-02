@@ -1,4 +1,7 @@
-﻿Communicator:
+﻿Seq:
+  ServerUrl: http://localhost:5341
+
+Communicator:
   RabbitMQ:
     Host: localhost
     VHost: /
