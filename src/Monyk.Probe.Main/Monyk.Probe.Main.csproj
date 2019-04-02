@@ -7,7 +7,10 @@
     <LangVersion>latest</LangVersion>
     <UserSecretsId>50b01a61-fc0b-4936-873f-adca2d46efc5</UserSecretsId>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
-  <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel><DockerDefaultTargetOS>Linux</DockerDefaultTargetOS></PropertyGroup>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+  </PropertyGroup>
 
   <ItemGroup>
     <None Remove="*.DotSettings" />
