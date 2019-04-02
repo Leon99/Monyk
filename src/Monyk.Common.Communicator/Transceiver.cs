@@ -46,7 +46,7 @@ namespace Monyk.Common.Communicator
                     retryCount, 
                     i => retryDelay,
                     (ex, delay, i, ctx) => 
-                        _logger.LogWarning($"Unable to connect to RabbitMQ. Will retry in {delay.TotalSeconds} seconds {retryCount - i} more time(s)."))
+                        _logger.LogWarning($"Unable to connect to RabbitMQ. Will retry in {delay.TotalSeconds} seconds ({retryCount - i + 1} more attempt(s) left)."))
                 .Execute(() => 
                     connection = factory.CreateConnection());
             _connection = connection;
