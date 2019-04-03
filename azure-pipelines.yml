@@ -11,7 +11,7 @@ variables:
   BuildConfiguration: 'release'
 
 steps:
-- pwsh: |
+- script: |
     dotnet build --configuration $(BuildConfiguration)
     dotnet test --logger trx
     dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
