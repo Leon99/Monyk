@@ -1,17 +1,28 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+    - master
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  buildConfiguration: 'Release'
+  BuildConfiguration: 'release'
 
 steps:
-- script: dotnet build Monyk.sln --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- pwsh: |
+    dotnet build --configuration $(BuildConfiguration) Monyk.sln
+    dotnet test --logger trx Monyk.sln
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.Lab.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.Probe.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.GroundControl.Main
+  displayName: 'dotnet build+test $(BuildConfiguration)'
+  env:
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+- task: PublishBuildArtifacts@1
