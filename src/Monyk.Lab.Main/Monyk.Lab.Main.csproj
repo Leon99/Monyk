@@ -12,10 +12,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
     <PackageReference Include="NetEscapades.Configuration.Yaml" Version="1.6.0" />
-    <PackageReference Include="Refit" Version="4.6.58" />
-    <PackageReference Include="Refit.HttpClientFactory" Version="4.6.58" />
+    <PackageReference Include="Refit" Version="4.6.99" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="4.6.99" />
   </ItemGroup>
 
   <ItemGroup>
