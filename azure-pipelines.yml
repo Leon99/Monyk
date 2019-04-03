@@ -13,8 +13,12 @@ variables:
 steps:
 - pwsh: |
     dotnet build --configuration $(BuildConfiguration)
+  displayName: 'dotnet build $(BuildConfiguration)'
+  env:
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+- pwsh: |
     dotnet test --logger trx
-  displayName: 'dotnet build+test $(BuildConfiguration)'
+  displayName: 'dotnet test $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 - task: PublishTestResults@2
