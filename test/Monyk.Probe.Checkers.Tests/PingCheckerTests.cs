@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Net;
+using System.Net.NetworkInformation;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Monyk.Common.Models;
@@ -10,9 +11,9 @@ namespace Monyk.Probe.Checkers.Tests
     public class PingCheckerTests
     {
         [Theory]
-        [InlineData(IPStatus.Success, CheckResultStatus.Success, null)]
-        [InlineData(IPStatus.DestinationHostUnreachable, CheckResultStatus.Failure, null)]
-        public async void RunCheck_BasicScenarios(IPStatus ipStatus, CheckResultStatus resultStatus, string resultMessage)
+        [InlineData(IPStatus.Success, "127.0.0.1", CheckResultStatus.Success, "Resolved IP address: 127.0.0.1")]
+        [InlineData(IPStatus.DestinationHostUnreachable, "0.0.0.0", CheckResultStatus.Failure, "Unable to resolve IP address")]
+        public async void RunCheck_BasicScenarios(IPStatus ipStatus, string ipAddress, CheckResultStatus resultStatus, string resultMessage)
         {
             // Arrange
             var pingFactoryMock = new Mock<IPingFactory>();
@@ -25,7 +26,8 @@ namespace Monyk.Probe.Checkers.Tests
                         .Setup(ping => ping.SendAsync(It.IsAny<string>()))
                         .ReturnsAsync(() => new PingReply
                         {
-                            Status = ipStatus
+                            Status = ipStatus,
+                            IPAddress = IPAddress.Parse(ipAddress)
                         });
                     return pingMock.Object;
                 });

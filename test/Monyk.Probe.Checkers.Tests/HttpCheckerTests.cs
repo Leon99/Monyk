@@ -14,8 +14,8 @@ namespace Monyk.Probe.Checkers.Tests
     public class HttpCheckerTests
     {
         [Theory]
-        [InlineData(HttpStatusCode.OK, CheckResultStatus.Success, null)]
-        [InlineData(HttpStatusCode.BadRequest, CheckResultStatus.Failure, null)]
+        [InlineData(HttpStatusCode.OK, CheckResultStatus.Success, "Received status code: 200 (OK)")]
+        [InlineData(HttpStatusCode.BadRequest, CheckResultStatus.Failure, "Received status code: 400 (BadRequest)")]
         public async void RunCheck_BasicScenarios(HttpStatusCode httpStatus, CheckResultStatus resultStatus, string resultMessage)
         {
             // Arrange
@@ -29,7 +29,8 @@ namespace Monyk.Probe.Checkers.Tests
                 )
                 .ReturnsAsync(new HttpResponseMessage
                 {
-                    StatusCode = httpStatus
+                    StatusCode = httpStatus,
+                    ReasonPhrase = httpStatus.ToString("G")
                 })
                 .Verifiable();
             var httpClientFactory = new FakeHttpClientFactory(handlerMock.Object);
