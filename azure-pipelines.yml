@@ -12,11 +12,11 @@ variables:
 
 steps:
 - pwsh: |
-    dotnet build --configuration $(BuildConfiguration) Monyk.sln
-    dotnet test --logger trx Monyk.sln
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.Lab.Main
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.Probe.Main
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) src/Monyk.GroundControl.Main
+    dotnet build --configuration $(BuildConfiguration)
+    dotnet test --logger trx
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Probe src/Monyk.Probe.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/GroundControl src/Monyk.GroundControl.Main
   displayName: 'dotnet build+test $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true

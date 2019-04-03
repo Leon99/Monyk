@@ -5,15 +5,15 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.2-sdk-stretch AS build
 WORKDIR /src
-COPY ["src/Monyk.Lab.Main/Monyk.Lab.Main.csproj", "src/Monyk.Lab.Main/"]
-COPY ["src/Monyk.Common.Models/Monyk.Common.Models.csproj", "src/Monyk.Common.Models/"]
-COPY ["src/Monyk.Common.Startup/Monyk.Common.Startup.csproj", "src/Monyk.Common.Startup/"]
-COPY ["src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj", "src/Monyk.Common.Communicator/"]
-COPY ["src/Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj", "src/Monyk.GroundControl.ApiClient/"]
-COPY ["src/Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj", "src/Monyk.GroundControl.Models/"]
-RUN dotnet restore "src/Monyk.Lab.Main/Monyk.Lab.Main.csproj"
+COPY ["Monyk.Lab.Main/Monyk.Lab.Main.csproj", "Monyk.Lab.Main/"]
+COPY ["Monyk.Common.Models/Monyk.Common.Models.csproj", "Monyk.Common.Models/"]
+COPY ["Monyk.Common.Startup/Monyk.Common.Startup.csproj", "Monyk.Common.Startup/"]
+COPY ["Monyk.Common.Communicator/Monyk.Common.Communicator.csproj", "Monyk.Common.Communicator/"]
+COPY ["Monyk.GroundControl.ApiClient/Monyk.GroundControl.ApiClient.csproj", "Monyk.GroundControl.ApiClient/"]
+COPY ["Monyk.GroundControl.Models/Monyk.GroundControl.Models.csproj", "Monyk.GroundControl.Models/"]
+RUN dotnet restore "Monyk.Lab.Main/Monyk.Lab.Main.csproj"
 COPY . .
-WORKDIR "/src/src/Monyk.Lab.Main"
+WORKDIR "/src/Monyk.Lab.Main"
 RUN dotnet build "Monyk.Lab.Main.csproj" -c Release -o /app
 
 FROM build AS publish

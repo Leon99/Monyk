@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.ApiClient", "src\Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj", "{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{52DA9560-2AFB-4291-81D3-88D579E6E9A7}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "src\docker-compose.dcproj", "{52DA9560-2AFB-4291-81D3-88D579E6E9A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.GroundControl.Api", "src\Monyk.GroundControl.Api\Monyk.GroundControl.Api.csproj", "{39427276-1AC5-44C6-BA6A-7AAF8C8BD292}"
 EndProject
