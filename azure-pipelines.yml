@@ -11,12 +11,9 @@ variables:
   BuildConfiguration: 'release'
 
 steps:
-- script: |
+- pwsh: |
     dotnet build --configuration $(BuildConfiguration)
     dotnet test --logger trx
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Probe src/Monyk.Probe.Main
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/GroundControl src/Monyk.GroundControl.Main
   displayName: 'dotnet build+test $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -25,4 +22,11 @@ steps:
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
+- pwsh: |
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Probe src/Monyk.Probe.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/GroundControl src/Monyk.GroundControl.Main
+  displayName: 'dotnet publish $(BuildConfiguration)'
+  env:
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 - task: PublishBuildArtifacts@1
