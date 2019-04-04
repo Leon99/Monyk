@@ -9,6 +9,7 @@ pool:
 
 variables:
   BuildConfiguration: 'release'
+  DockerHubUser: 'leon99'
 
 steps:
 - pwsh: |
@@ -27,10 +28,34 @@ steps:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
 - pwsh: |
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
-    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Probe src/Monyk.Probe.Main
     dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/GroundControl src/Monyk.GroundControl.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Probe src/Monyk.Probe.Main
+    dotnet publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Lab src/Monyk.Lab.Main
   displayName: 'dotnet publish $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+- pwsh: |    
+    docker build $(Build.ArtifactStagingDirectory)/GroundControl `
+      --file src/Monyk.GroundControl.Main/ci.Dockerfile `
+      --tag $(DockerHubUser)/monyk-groundcontrol:$(build.buildNumber) `
+      --tag $(DockerHubUser)/monyk-groundcontrol:latest `
+      --build-arg mainFileName=Monyk.GroundControl.Main
+    docker build $(Build.ArtifactStagingDirectory)/Probe `
+      --file src/Monyk.Probe.Main/ci.Dockerfile `
+      --tag $(DockerHubUser)/monyk-probe:$(build.buildNumber) `
+      --tag $(DockerHubUser)/monyk-probe:latest `
+      --build-arg mainFileName=Monyk.Probe.Main
+    docker build $(Build.ArtifactStagingDirectory)/Lab `
+      --file src/Monyk.Lab.Main/ci.Dockerfile `
+      --tag $(DockerHubUser)/monyk-lab:$(build.buildNumber) `
+      --tag $(DockerHubUser)/monyk-lab:latest `
+      --build-arg mainFileName=Monyk.Lab.Main
+  displayName: 'docker build'
+- pwsh: |
+    $env:DOCKER_PWD | docker login -u $(DockerHubUser) --password-stdin 
+    docker push $(DockerHubUser)/monyk-groundcontrol
+    docker push $(DockerHubUser)/monyk-probe
+    docker push $(DockerHubUser)/monyk-lab
+  env:
+    DOCKER_PWD: $(dockerHubPwd) 
 - task: PublishBuildArtifacts@1
