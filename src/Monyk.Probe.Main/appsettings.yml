@@ -4,6 +4,6 @@
 Communicator:
   RabbitMQ:
     Host: <required>
-    VHost: <required>
+    VHost: /
     UserName: <required>
     Password: <required>
