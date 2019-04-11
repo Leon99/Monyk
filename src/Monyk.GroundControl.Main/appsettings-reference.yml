@@ -4,7 +4,7 @@
 Communicator:
   RabbitMQ:
     Host: <required>
-    VHost: /
+    VHost: <required>
     UserName: <required>
     Password: <required>
 GroundControl:
