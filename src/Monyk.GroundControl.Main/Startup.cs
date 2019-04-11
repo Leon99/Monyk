@@ -11,6 +11,7 @@ using Monyk.Common.Models;
 using Monyk.Common.Startup;
 using Monyk.GroundControl.Db;
 using Monyk.GroundControl.Main.Models;
+using Monyk.GroundControl.Main.Services;
 using Monyk.GroundControl.Services;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -61,41 +62,29 @@ namespace Monyk.GroundControl.Main
             services.AddScoped<MonitorManager>();
             services.AddSingleton<MonitorScheduler>();
             services.AddSingleton<TimerFactory>();
+            services.AddSingleton<ControlRoom>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         [UsedImplicitly]
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ControlRoom ctrl)
         {
-            Directory.SetCurrentDirectory(env.ContentRootPath); // To make it consistent across different hosts
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            if (env.IsDevelopment())
             {
-                var db = serviceScope.ServiceProvider.GetService<MonykDbContext>();
-                if (env.IsDevelopment())
-                {
-                    app.UseDeveloperExceptionPage();
-                    Bootstrapper.SeedDataForDevelopment(db);
-                }
-                else
-                {
-                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                    app.UseHsts();
-                }
-                ScheduleMonitors(db, app.ApplicationServices.GetService<MonitorScheduler>());
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
             //app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
-        }
 
-        private static void ScheduleMonitors(MonykDbContext db, MonitorScheduler scheduler)
-        {
-            foreach (var monitor in db.Monitors.Where(m => !m.IsDeleted && !m.IsStopped))
-            {
-                scheduler.AddSchedule(monitor);
-            }
+            ctrl.StartFlights(app, env);
         }
     }
 }

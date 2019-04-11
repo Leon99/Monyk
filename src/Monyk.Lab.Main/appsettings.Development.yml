@@ -4,6 +4,7 @@
 Communicator:
   RabbitMQ:
     Host: localhost
+    VHost: /
     UserName: guest
     Password: guest
 Lab:

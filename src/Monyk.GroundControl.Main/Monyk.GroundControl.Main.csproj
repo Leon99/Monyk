@@ -3,14 +3,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>dd417278-e3be-4574-96d3-ec2bec654814</UserSecretsId>
-    <LangVersion>latest</LangVersion>
-    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
-  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS></PropertyGroup>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath></OutputPath>
     <DocumentationFile>Monyk.GroundControl.Main.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
@@ -33,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings*.yml">
+    <None Update="appsettings.*yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

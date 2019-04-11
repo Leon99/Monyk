@@ -1,13 +1,1 @@
-﻿Seq:
-  ServerUrl: <optional>
-    
-Communicator:
-  RabbitMQ:
-    Host: <required>
-    VHost: /
-    UserName: <required>
-    Password: <required>
-GroundControl:
-  Database:
-    Type: '<Sqlite|Postgres, required>'
-    ConnectionString: <required>
+﻿

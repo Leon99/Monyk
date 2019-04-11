@@ -1,0 +1,14 @@
+﻿Seq:
+  ServerUrl: <optional>
+  
+Communicator:
+  RabbitMQ:
+    Host: <required>
+    VHost: /
+    UserName: <required>
+    Password: <required>
+Lab:
+  GroundControlBaseUrl: <required>
+  ResultProcessors:
+    SlackNotifier:
+      WebHooks: <env. specific secrets (list)>

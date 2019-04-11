@@ -54,7 +54,7 @@ Either method will launch Monyk using default setting for development environmen
 See [Configuration](#configuration) for details on preparing it to run in the wild.
 #### Hold on, but you said there will be no rocket science?
 
-Feel free to correct it and submit a PR 🖖
+Feel free to improve things and submit a PR 🖖
 
 ## Details
 
@@ -66,7 +66,7 @@ Configuration can be done using any of the following methods (in order of priori
 2. Environment variables
 3. Using `appsettings.<environment>.yml`, when `<environment>` can be specified using `ASPNETCORE_ENVIRONMENT` environment variable
 
-Check `appsettings.yml` for the reference on available settings.
+Check `appsettings-reference.yml` for the reference on available settings.
 
 When configuring using environment variables, use `MONYK_` prefix and `__` as a delimiter in hierarchical keys. List items can be set using an index as another hierarchy level. For example, the following setting from `appsettings.yml`
 ```yaml

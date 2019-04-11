@@ -4,7 +4,7 @@ using Monyk.Common.Startup;
 
 namespace Monyk.GroundControl.Main
 {
-    class Program
+    static class Program
     {
         public static void Main(string[] args)
         {
