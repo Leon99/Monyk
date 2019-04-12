@@ -13,7 +13,7 @@ namespace Monyk.GroundControl.Db
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, DatabaseType type, string connectionString)
         {
-            return services.AddDbContext<MonykDbContext>(options =>
+            return services.AddDbContextPool<MonykDbContext>(options =>
             {
                 switch (type)
                 {

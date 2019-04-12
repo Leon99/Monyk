@@ -36,9 +36,7 @@ namespace Monyk.GroundControl.Main
             services.AddMvcCore()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddApiExplorer()
-                //.AddAuthorization()
                 .AddFormatterMappings()
-                //.AddCacheTagHelper()
                 .AddDataAnnotations()
                 .AddJsonFormatters(settings =>
                 {
@@ -62,12 +60,12 @@ namespace Monyk.GroundControl.Main
             services.AddScoped<MonitorManager>();
             services.AddSingleton<MonitorScheduler>();
             services.AddSingleton<TimerFactory>();
-            services.AddSingleton<ControlRoom>();
+            services.AddScoped<Launcher>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         [UsedImplicitly]
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ControlRoom ctrl)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Launcher ctrl)
         {
             if (env.IsDevelopment())
             {
@@ -84,7 +82,8 @@ namespace Monyk.GroundControl.Main
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
 
-            ctrl.StartFlights(app, env);
+            ctrl.Prepare(env);
+            ctrl.StartMonitoring();
         }
     }
 }
