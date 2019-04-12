@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.Common.Startup;
@@ -31,8 +30,12 @@ namespace Monyk.Lab.Main
 
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
-            services.AddSingleton(_configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>());
-            services.AddSingleton<IResultProcessor, SlackNotifier>();
+            var notifierSettings = _configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>();
+            if (notifierSettings != null)
+            {
+                services.AddSingleton(notifierSettings);
+                services.AddSingleton<IResultProcessor, SlackNotifier>();
+            }
             services.AddRefitClient<IGroundControlApi>()
                 .ConfigureHttpClient(client => client.BaseAddress = new Uri(_configuration["Lab:GroundControlBaseUrl"]));
 
