@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Hosting;
 using Monyk.Common.Startup;
 
 namespace Monyk.Lab.Main
@@ -17,9 +15,7 @@ namespace Monyk.Lab.Main
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost
-                    .CreateDefaultBuilder(args)
-                    .UseAppConfigurationWithYaml(args)
-                    .ConfigureLogging()
+                    .CreateBuilder(args)
                     .UseStartup<Startup>()
                 ;
         }

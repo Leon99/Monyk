@@ -1,51 +1,64 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Monyk.Common.Startup
 {
-    public static class WebHostBuilderExtensions
+    public static class WebHost
     {
-        public static IWebHostBuilder UseAppConfigurationWithYaml(this IWebHostBuilder builder, string[] args)
+        public static IWebHostBuilder CreateBuilder(string[] args)
         {
-            builder.UseAppSettingsYaml();
-            return builder.ConfigureAppConfiguration((hostingContext, config) =>
+            var hostBuilder = new WebHostBuilder();
+            if (String.IsNullOrEmpty(hostBuilder.GetSetting(WebHostDefaults.ContentRootKey)))
             {
-                if (hostingContext.HostingEnvironment.IsDevelopment())
-                {
-                    config.AddUserSecretsForMainAssembly(hostingContext.HostingEnvironment);
-                }
+                hostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+            }
 
-                config.AddEnvironmentVariables("MONYK_");
-
-                if (args != null)
-                {
-                    config.AddCommandLine(args);
-                }
-            });
-        }
-
-        public static IWebHostBuilder UseAppSettingsYaml(this IWebHostBuilder builder)
-        {
-            return builder.ConfigureAppConfiguration((hostingContext, config) =>
+            if (args != null)
             {
-                config
-                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                    .AddYamlFile("appsettings.yml", optional: true)
-                    .AddYamlFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.yml", optional: true);
-            });
-        }
+                hostBuilder.UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build());
+            }
 
-        public static IWebHostBuilder ConfigureLogging(this IWebHostBuilder hostBuilder)
-        {
-            return hostBuilder.ConfigureLogging((context, builder) =>
-            {
-                var config = context.Configuration.GetSection("Seq");
-                if (config != null)
+            hostBuilder
+                .UseKestrel((builderContext, options) => options.Configure(builderContext.Configuration.GetSection("Kestrel")))
+                .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    builder.AddSeq(config);
-                }
-            });
+                    var hostingEnvironment = hostingContext.HostingEnvironment;
+                    config
+                        .AddYamlFile("appsettings.yml", true, true)
+                        .AddYamlFile("appsettings." + hostingEnvironment.EnvironmentName + ".yml", true, true);
+                    if (hostingEnvironment.IsDevelopment())
+                    {
+                        var assembly = Assembly.Load(new AssemblyName(hostingEnvironment.ApplicationName));
+                        if (assembly != null)
+                        {
+                            config.AddUserSecrets(assembly, true);
+                        }
+                    }
+
+                    config.AddEnvironmentVariables("MONYK_");
+                    if (args != null)
+                    {
+                        config.AddCommandLine(args);
+                    }
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                    var config = hostingContext.Configuration.GetSection("Seq");
+                    if (config != null)
+                    {
+                        logging.AddSeq(config);
+                    }
+                })
+                .UseDefaultServiceProvider((context, options) => options.ValidateScopes = context.HostingEnvironment.IsDevelopment());
+            return hostBuilder;
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿Seq:
+﻿Logging: 
+  LogLevel: 
+    Default: Debug
+    System: Information
+    Microsoft: Information
+  
+Seq:
   ServerUrl: http://localhost:5341
 
 Communicator:
