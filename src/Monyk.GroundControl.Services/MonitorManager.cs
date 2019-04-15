@@ -10,10 +10,10 @@ namespace Monyk.GroundControl.Services
 {
     public class MonitorManager
     {
-        private readonly MonykDbContext _db;
+        private readonly GroundControlDbContext _db;
         private readonly MonitorScheduler _scheduler;
 
-        public MonitorManager(MonykDbContext db, MonitorScheduler scheduler)
+        public MonitorManager(GroundControlDbContext db, MonitorScheduler scheduler)
         {
             _db = db;
             _scheduler = scheduler;

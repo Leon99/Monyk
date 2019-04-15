@@ -13,7 +13,7 @@ namespace Monyk.GroundControl.Db
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, DatabaseType type, string connectionString)
         {
-            return services.AddDbContextPool<MonykDbContext>(options =>
+            return services.AddDbContextPool<GroundControlDbContext>(options =>
             {
                 switch (type)
                 {
@@ -30,7 +30,7 @@ namespace Monyk.GroundControl.Db
             });
         }
 
-        public static void SeedDataForDevelopment(MonykDbContext db)
+        public static void SeedDataForDevelopment(GroundControlDbContext db)
         {
             if (db.Database.IsSqlite())
             {

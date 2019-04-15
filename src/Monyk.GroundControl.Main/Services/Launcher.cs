@@ -9,10 +9,10 @@ namespace Monyk.GroundControl.Main.Services
 {
     public class Launcher
     {
-        private readonly MonykDbContext _db;
+        private readonly GroundControlDbContext _db;
         private readonly MonitorScheduler _scheduler;
 
-        public Launcher(MonykDbContext db, MonitorScheduler scheduler)
+        public Launcher(GroundControlDbContext db, MonitorScheduler scheduler)
         {
             _db = db;
             _scheduler = scheduler;

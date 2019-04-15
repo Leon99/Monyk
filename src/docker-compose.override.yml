@@ -9,7 +9,7 @@ services:
       - MONYK_Seq__ServerUrl=http://seq:5341
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
       - MONYK_GroundControl__Database__Type=postgres
-      - MONYK_GroundControl__Database__ConnectionString=Host=postgres;Username=postgres;Password=postgres;Database=monyk
+      - MONYK_GroundControl__Database__ConnectionString=Host=postgres;Username=postgres;Password=postgres;Database=groundcontrol
     ports:
       - "42112:80"
       - "42113:443"

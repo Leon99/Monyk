@@ -3,9 +3,9 @@ using Monyk.GroundControl.Models;
 
 namespace Monyk.GroundControl.Db
 {
-    public class MonykDbContext : DbContext
+    public class GroundControlDbContext : DbContext
     {
-        public MonykDbContext(DbContextOptions<MonykDbContext> options) : base(options)
+        public GroundControlDbContext(DbContextOptions<GroundControlDbContext> options) : base(options)
         {
         }
 

@@ -8,7 +8,7 @@ using Monyk.GroundControl.Db;
 
 namespace Monyk.GroundControl.Db.Migrations
 {
-    [DbContext(typeof(MonykDbContext))]
+    [DbContext(typeof(GroundControlDbContext))]
     [Migration("20190412051812_InitialCreate")]
     partial class InitialCreate
     {

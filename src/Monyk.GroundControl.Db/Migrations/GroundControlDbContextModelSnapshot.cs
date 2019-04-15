@@ -7,8 +7,8 @@ using Monyk.GroundControl.Db;
 
 namespace Monyk.GroundControl.Db.Migrations
 {
-    [DbContext(typeof(MonykDbContext))]
-    partial class MonykDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(GroundControlDbContext))]
+    partial class GroundControlDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
