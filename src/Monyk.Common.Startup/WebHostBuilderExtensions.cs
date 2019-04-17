@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Monyk.Common.Startup
 {
@@ -45,16 +45,17 @@ namespace Monyk.Common.Startup
                         config.AddCommandLine(args);
                     }
                 })
-                .ConfigureLogging((hostingContext, logging) =>
+                .UseSerilog((hostingContext, loggerConfiguration) =>
                 {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddConsole();
-                    logging.AddDebug();
-                    logging.AddEventSourceLogger();
-                    var config = hostingContext.Configuration.GetSection("Seq");
-                    if (config != null)
+                    loggerConfiguration
+                        .ReadFrom.Configuration(hostingContext.Configuration)
+                        .WriteTo.Console()
+                        .Enrich.FromLogContext()
+                        ;
+                    var seqConfig = hostingContext.Configuration.GetSection("Serilog:Seq");
+                    if (seqConfig != null)
                     {
-                        logging.AddSeq(config);
+                        loggerConfiguration.WriteTo.Seq(seqConfig["ServerUrl"]);
                     }
                 })
                 .UseDefaultServiceProvider((context, options) => options.ValidateScopes = context.HostingEnvironment.IsDevelopment());

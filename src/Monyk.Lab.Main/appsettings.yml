@@ -1,1 +1,3 @@
-﻿
+﻿Serilog:
+  Properties:
+    Application: Lab

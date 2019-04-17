@@ -1,3 +1,8 @@
-﻿Logging: 
-  LogLevel: 
+﻿Serilog:
+  MinimumLevel:
     Default: Information
+    Override:
+      Microsoft: Warning
+      System: Warning
+  Enrich:
+  - WithMachineName
