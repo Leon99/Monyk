@@ -32,6 +32,7 @@ cd monyk
 ```
 
 #### Run using Docker Compose
+
 `docker-compose up`
 
 #### Run manually
@@ -52,6 +53,7 @@ Either method will launch Monyk using default setting for development environmen
 - all the components are unsecured
 
 See [Configuration](#configuration) for details on preparing it to run in the wild.
+
 #### Hold on, but you said there will be no rocket science?
 
 Feel free to improve things and submit a PR 🖖
@@ -68,13 +70,4 @@ Configuration can be done using any of the following methods (in order of priori
 
 Check `appsettings-reference.yml` for the reference on available settings.
 
-When configuring using environment variables, use `MONYK_` prefix and `__` as a delimiter in hierarchical keys. List items can be set using an index as another hierarchy level. For example, the following setting from `appsettings.yml`
-```yaml
-Lab:
-  ResultProcessors:
-    SlackNotifier:
-      WebHooks:
-        - 'https://hooks.slack.com/services/...'
-```
-can be set using an environment variable `MONYK_Lab__ResultProcessors__SlackNotifier__WebHooks__0`.
-More examples can be found in `docker-compose.override.yml`.
+When configuring using environment variables, use `MONYK_` prefix and `__` as a delimiter in hierarchical keys. Examples can be found in `docker-compose.override.yml`.
