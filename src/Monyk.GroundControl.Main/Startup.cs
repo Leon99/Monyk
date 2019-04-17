@@ -70,9 +70,12 @@ namespace Monyk.GroundControl.Main
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
+            app
+                .UseMvc()
+                .UseMiddleware<SerilogMiddleware>();
+            app
+                .UseSwagger()
+                .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ground Control"); });
 
             ctrl.Prepare(env);
             ctrl.StartMonitoring();
