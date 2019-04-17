@@ -26,7 +26,7 @@ namespace Monyk.Probe.Main
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Launching the probe");
+            _logger.LogInformation("Launching Probe");
 #pragma warning disable 4014
             _receiver.Received += (sender, check) => RunCheckAsync(check);
 #pragma warning restore 4014

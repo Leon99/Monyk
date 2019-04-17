@@ -23,7 +23,7 @@ namespace Monyk.Lab.Main.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Opening the lab");
+            _logger.LogInformation("Opening Lab");
             _receiver.Received += async (sender, result) => await ProcessResultAsync(result);
             _receiver.StartReception();
             return Task.CompletedTask;
