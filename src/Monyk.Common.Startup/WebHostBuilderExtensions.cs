@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +11,7 @@ namespace Monyk.Common.Startup
         public static IWebHostBuilder CreateBuilder(string[] args)
         {
             var hostBuilder = new WebHostBuilder();
-            if (String.IsNullOrEmpty(hostBuilder.GetSetting(WebHostDefaults.ContentRootKey)))
+            if (string.IsNullOrEmpty(hostBuilder.GetSetting(WebHostDefaults.ContentRootKey)))
             {
                 hostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
             }

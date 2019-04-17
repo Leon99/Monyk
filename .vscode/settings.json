@@ -1,5 +1,13 @@
 {
     "cSpell.words": [
         "Monyk"
+    ],
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
     ]
 }
