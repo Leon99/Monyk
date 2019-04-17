@@ -52,10 +52,10 @@ namespace Monyk.Common.Startup
                         .WriteTo.Console()
                         .Enrich.FromLogContext()
                         ;
-                    var seqConfig = hostingContext.Configuration.GetSection("Serilog:Seq");
-                    if (seqConfig != null)
+                    var seqUrl = hostingContext.Configuration.GetSection("Serilog:Seq")?["ServerUrl"];
+                    if (seqUrl != null)
                     {
-                        loggerConfiguration.WriteTo.Seq(seqConfig["ServerUrl"]);
+                        loggerConfiguration.WriteTo.Seq(seqUrl);
                     }
                 })
                 .UseDefaultServiceProvider((context, options) => options.ValidateScopes = context.HostingEnvironment.IsDevelopment());
