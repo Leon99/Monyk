@@ -6,9 +6,10 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Monyk.GroundControl.Models;
 using Monyk.GroundControl.Services;
 
-namespace Monyk.GroundControl.Main.Controllers
+namespace Monyk.GroundControl.Api.Controllers
 {
     [Route("monitors")]
+    [Consumes("application/json")]
     [Produces("application/json")]
     public class MonitorsController : ControllerBase
     {
@@ -51,7 +52,7 @@ namespace Monyk.GroundControl.Main.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<MonitorEntity>> CreateMonitor(MonitorEntity monitorEntity)
+        public async Task<ActionResult<MonitorEntity>> CreateMonitor([FromBody]MonitorEntity monitorEntity)
         {
             await _service.CreateMonitor(monitorEntity);
 
