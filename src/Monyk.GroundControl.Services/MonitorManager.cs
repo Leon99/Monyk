@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +22,11 @@ namespace Monyk.GroundControl.Services
 
         public async Task<IEnumerable<MonitorEntity>> GetMonitorsAsReadOnly()
         {
-            return await _db.Monitors
-                .AsNoTracking()
-                .Where(m => !m.IsDeleted)
-                .ToListAsync();
+            return (await _db.Monitors
+                    .AsNoTracking()
+                    .Where(m => !m.IsDeleted)
+                    .ToListAsync())
+                .ToImmutableList();
         }
 
         public async Task<MonitorEntity> GetMonitor(Guid id)
@@ -79,6 +81,7 @@ namespace Monyk.GroundControl.Services
             {
                 return false;
             }
+
             _scheduler.DeleteSchedule(id);
 
             monitor.IsDeleted = true;
@@ -86,6 +89,5 @@ namespace Monyk.GroundControl.Services
 
             return true;
         }
-
     }
 }
