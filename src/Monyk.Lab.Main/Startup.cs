@@ -47,9 +47,6 @@ namespace Monyk.Lab.Main
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app
-                .UseMvc()
-                .UseMiddleware<SerilogMiddleware>();
         }
     }
 }
