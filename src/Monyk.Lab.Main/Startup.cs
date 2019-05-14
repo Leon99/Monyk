@@ -36,7 +36,8 @@ namespace Monyk.Lab.Main
                 services.AddSingleton(notifierSettings);
                 services.AddSingleton<IResultProcessor, SlackNotifier>();
             }
-            services.AddRefitClient<IGroundControlApi>()
+            services
+                .AddRefitClient<IGroundControlApi>()
                 .ConfigureHttpClient(client => client.BaseAddress = new Uri(_configuration["Lab:GroundControlBaseUrl"]));
 
             services.AddHostedService<LabService>();
@@ -46,7 +47,9 @@ namespace Monyk.Lab.Main
         [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
+            app
+                .UseMvc()
+                .UseMiddleware<SerilogMiddleware>();
         }
     }
 }
