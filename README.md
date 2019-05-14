@@ -71,3 +71,7 @@ Configuration can be done using any of the following methods (in order of priori
 Check `appsettings-reference.yml` for the reference on available settings.
 
 When configuring using environment variables, use `MONYK_` prefix and `__` as a delimiter in hierarchical keys. Examples can be found in `docker-compose.override.yml`.
+
+### Recipes
+
+- [Terraform](https://www.terraform.io) with [REST API Provider](https://github.com/Mastercard/terraform-provider-restapi) can be used to manage monitors as part of an infrastructure-as-a-code solution.
