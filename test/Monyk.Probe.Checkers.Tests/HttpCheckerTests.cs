@@ -55,7 +55,7 @@ namespace Monyk.Probe.Checkers.Tests
                 "SendAsync",
                 Times.Exactly(1),
                 ItExpr.Is<HttpRequestMessage>(req =>
-                    req.Method == HttpMethod.Get
+                    req.Method == HttpMethod.Head
                     &&
                     req.RequestUri == expectedUri
                 ),

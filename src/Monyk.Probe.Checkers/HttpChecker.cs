@@ -21,7 +21,7 @@ namespace Monyk.Probe.Checkers
             HttpResponseMessage response;
             try
             {
-                response = await client.GetAsync(config.Target);
+                response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Head, config.Target));
             }
             catch (Exception ex)
             {
