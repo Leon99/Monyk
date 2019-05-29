@@ -8,7 +8,7 @@ using Monyk.Common.Communicator;
 using Monyk.Common.Models;
 using Monyk.Common.Startup;
 using Monyk.GroundControl.ApiClient;
-using Monyk.Lab.Main.Services;
+using Monyk.Lab.Main.Processors;
 using Refit;
 
 namespace Monyk.Lab.Main
@@ -30,11 +30,11 @@ namespace Monyk.Lab.Main
 
             services.AddRabbitMQConnectionFactory(_configuration);
             services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
-            var notifierSettings = _configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<SlackNotifierSettings>();
+            var notifierSettings = _configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<WebHookNotifierSettings>();
             if (notifierSettings != null)
             {
                 services.AddSingleton(notifierSettings);
-                services.AddSingleton<IResultProcessor, SlackNotifier>();
+                services.AddSingleton<IResultProcessor, WebHookNotifier>();
             }
             services
                 .AddRefitClient<IGroundControlApi>()

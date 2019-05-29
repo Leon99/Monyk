@@ -8,22 +8,22 @@ using Monyk.Common.Models;
 using Monyk.GroundControl.ApiClient;
 using Monyk.GroundControl.Models;
 
-namespace Monyk.Lab.Main.Services
+namespace Monyk.Lab.Main.Processors
 {
-    public class SlackNotifierSettings
+    public class WebHookNotifierSettings
     {
         public IEnumerable<string> WebHooks { get; set; }
     }
 
-    public class SlackNotifier : IResultProcessor
+    public class WebHookNotifier : IResultProcessor
     {
-        private readonly ILogger<SlackNotifier> _logger;
+        private readonly ILogger<WebHookNotifier> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly SlackNotifierSettings _settings;
+        private readonly WebHookNotifierSettings _settings;
         private readonly IGroundControlApi _gcApi;
         private static readonly JsonMediaTypeFormatter Formatter = new JsonMediaTypeFormatter();
 
-        public SlackNotifier(ILogger<SlackNotifier> logger, IHttpClientFactory httpClientFactory, SlackNotifierSettings settings, IGroundControlApi gcApi)
+        public WebHookNotifier(ILogger<WebHookNotifier> logger, IHttpClientFactory httpClientFactory, WebHookNotifierSettings settings, IGroundControlApi gcApi)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;

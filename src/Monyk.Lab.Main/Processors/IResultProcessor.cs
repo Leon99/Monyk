@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Monyk.Common.Models;
 
-namespace Monyk.Lab.Main.Services
+namespace Monyk.Lab.Main.Processors
 {
     public interface IResultProcessor
     {

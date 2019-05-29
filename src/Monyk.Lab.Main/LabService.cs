@@ -5,8 +5,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Monyk.Common.Communicator;
 using Monyk.Common.Models;
+using Monyk.Lab.Main.Processors;
 
-namespace Monyk.Lab.Main.Services
+namespace Monyk.Lab.Main
 {
     public class LabService : IHostedService
     {
