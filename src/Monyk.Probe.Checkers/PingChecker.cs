@@ -23,20 +23,28 @@ namespace Monyk.Probe.Checkers
             var ping = _pingFactory.Create();
             try
             {
-                var result = await ping.SendAsync(config.Target);
-                return new CheckResult
+                var pingReply = await ping.SendAsync(config.Target);
+                var result = new CheckResult
                 {
-                    Status = result.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure,
-                    Description = !result.IPAddress.Equals(IPAddress.Any) ? $"Resolved IP address: {result.IPAddress}" : "Unable to resolve IP address",
-                    CompletionTime = result.RoundtripTime
+                    Status = pingReply.Status == IPStatus.Success ? CheckResultStatus.Success : CheckResultStatus.Failure,
                 };
+                if (pingReply.IPAddress != null && !pingReply.IPAddress.Equals(IPAddress.Any))
+                {
+                    result.Description = $"Resolved IP address: {pingReply.IPAddress}";
+                    result.CompletionTime = pingReply.RoundtripTime;
+                }
+                else
+                {
+                    result.Description = $"Unable to resolve IP address ({pingReply.Status})";
+                }
+                return result;
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, ex.Message);
                 return new CheckResult
                 {
-                    Status = CheckResultStatus.Failure, Description = ex.InnerException?.Message ?? ex.Message
+                    Status = CheckResultStatus.Indeterminate, Description = ex.InnerException?.Message ?? ex.Message
                 };
             }
         }

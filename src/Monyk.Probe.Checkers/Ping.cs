@@ -42,14 +42,7 @@ namespace Monyk.Probe.Checkers
         public async Task<PingReply> SendAsync(string address)
         {
             System.Net.NetworkInformation.PingReply reply;
-            try
-            {
-                reply = await _ping.SendPingAsync(address);
-            }
-            catch (PingException)
-            {
-                return new PingReply();
-            }
+            reply = await _ping.SendPingAsync(address);
             return new PingReply
             {
                 Status = reply.Status,

@@ -12,7 +12,7 @@ namespace Monyk.Probe.Checkers.Tests
     {
         [Theory]
         [InlineData(IPStatus.Success, "127.0.0.1", CheckResultStatus.Success, "Resolved IP address: 127.0.0.1")]
-        [InlineData(IPStatus.DestinationHostUnreachable, "0.0.0.0", CheckResultStatus.Failure, "Unable to resolve IP address")]
+        [InlineData(IPStatus.DestinationHostUnreachable, "0.0.0.0", CheckResultStatus.Failure, "Unable to resolve IP address (DestinationHostUnreachable)")]
         public async void RunCheck_BasicScenarios(IPStatus ipStatus, string ipAddress, CheckResultStatus resultStatus, string resultMessage)
         {
             // Arrange
