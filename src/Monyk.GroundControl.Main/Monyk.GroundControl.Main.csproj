@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Monyk.Common.Db\Monyk.Common.Db.csproj" />
     <ProjectReference Include="..\Monyk.GroundControl.Api\Monyk.GroundControl.Api.csproj" />
+    <ProjectReference Include="..\Monyk.GroundControl.Db.Migrations\Monyk.GroundControl.Db.Migrations.csproj" />
     <ProjectReference Include="..\Monyk.GroundControl.Models\Monyk.GroundControl.Models.csproj" />
     <ProjectReference Include="..\Monyk.Common.Startup\Monyk.Common.Startup.csproj" />
     <ProjectReference Include="..\Monyk.GroundControl.Db\Monyk.GroundControl.Db.csproj" />

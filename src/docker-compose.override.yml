@@ -39,6 +39,8 @@ services:
       - MONYK_Serilog__Seq__ServerUrl=http://seq:5341
       - MONYK_Communicator__RabbitMQ__Host=rabbitmq
       - MONYK_Lab__GroundControlBaseUrl=http://monyk.groundcontrol.main
+      - MONYK_Lab__Database__Type=postgres
+      - MONYK_Lab__Database__ConnectionString=Host=postgres;Username=postgres;Password=postgres;Database=groundcontrol
     ports:
       - "42132:80"
       - "42133:443"
