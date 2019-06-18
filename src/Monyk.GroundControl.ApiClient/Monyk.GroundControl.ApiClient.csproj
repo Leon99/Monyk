@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
-    <PackageReference Include="Refit" Version="4.6.99" />
+    <PackageReference Include="Refit" Version="4.7.9" />
   </ItemGroup>
 
   <ItemGroup>
