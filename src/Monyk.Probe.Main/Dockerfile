@@ -1,18 +1,18 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:2.2-sdk-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["Monyk.Probe.Main/Monyk.Probe.Main.csproj", "Monyk.Probe.Main/"]
-COPY ["Monyk.Common.Communicator/Monyk.Common.Communicator.csproj", "Monyk.Common.Communicator/"]
-COPY ["Monyk.Common.Startup/Monyk.Common.Startup.csproj", "Monyk.Common.Startup/"]
-COPY ["Monyk.Probe.Checkers/Monyk.Probe.Checkers.csproj", "Monyk.Probe.Checkers/"]
-COPY ["Monyk.Common.Models/Monyk.Common.Models.csproj", "Monyk.Common.Models/"]
-RUN dotnet restore "Monyk.Probe.Main/Monyk.Probe.Main.csproj"
+COPY ["src/Monyk.Probe.Main/Monyk.Probe.Main.csproj", "src/Monyk.Probe.Main/"]
+COPY ["src/Monyk.Common.Communicator/Monyk.Common.Communicator.csproj", "src/Monyk.Common.Communicator/"]
+COPY ["src/Monyk.Common.Startup/Monyk.Common.Startup.csproj", "src/Monyk.Common.Startup/"]
+COPY ["src/Monyk.Probe.Checkers/Monyk.Probe.Checkers.csproj", "src/Monyk.Probe.Checkers/"]
+COPY ["src/Monyk.Common.Models/Monyk.Common.Models.csproj", "src/Monyk.Common.Models/"]
+RUN dotnet restore "src/Monyk.Probe.Main/Monyk.Probe.Main.csproj"
 COPY . .
-WORKDIR "/src/Monyk.Probe.Main"
+WORKDIR "/src/src/Monyk.Probe.Main"
 RUN dotnet build "Monyk.Probe.Main.csproj" -c Release -o /app
 
 FROM build AS publish
