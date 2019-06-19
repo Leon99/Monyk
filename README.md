@@ -28,7 +28,7 @@ Note that all the further commands assume that you have cloned the repository:
 
 ```Shell
 git clone https://github.com/leon99/monyk
-cd monyk
+cd monyk/src
 ```
 
 #### Run using Docker Compose
@@ -39,9 +39,9 @@ cd monyk
 
 1. [Install RabbitMQ](https://www.rabbitmq.com/download.html)
 2. Make sure that you have the latest release of [.NET Core SDK](https://dotnet.microsoft.com/download) installed
-3. Run *GroundControl*: `dotnet run --project .\src\Monyk.GroundControl.Main`
-4. Run *Probes*: `dotnet run --project .\src\Monyk.Lab.Main`
-5. Run *Lab*: `dotnet run --project .\src\Monyk.Probe.Main`
+3. Run *GroundControl*: `dotnet run --project Monyk.GroundControl.Main`
+4. Run *Probes*: `dotnet run --project Monyk.Lab.Main`
+5. Run *Lab*: `dotnet run --project Monyk.Probe.Main`
 6. (Optional) [Install Seq](https://docs.getseq.net/docs/getting-started-with-docker) to make use of semantic logging support
 
 Either method will launch Monyk using default setting for development environment:
