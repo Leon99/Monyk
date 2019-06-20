@@ -29,8 +29,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9C4D6B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6073B3B8-5537-4F94-BBBD-09EAB646A5C7}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -42,17 +47,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.ApiClient", "src\Monyk.GroundControl.ApiClient\Monyk.GroundControl.ApiClient.csproj", "{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "src\docker-compose.dcproj", "{52DA9560-2AFB-4291-81D3-88D579E6E9A7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Api", "src\Monyk.GroundControl.Api\Monyk.GroundControl.Api.csproj", "{39427276-1AC5-44C6-BA6A-7AAF8C8BD292}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.GroundControl.Db.Migrations", "src\Monyk.GroundControl.Db.Migrations\Monyk.GroundControl.Db.Migrations.csproj", "{F68DA237-8919-41CB-A93F-945D09FCFB94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.Lab.Models", "src\Monyk.Lab.Models\Monyk.Lab.Models.csproj", "{DF92A127-C718-4B65-B79A-C53A314EB9CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Lab.Models", "src\Monyk.Lab.Models\Monyk.Lab.Models.csproj", "{DF92A127-C718-4B65-B79A-C53A314EB9CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.Lab.Db", "src\Monyk.Lab.Db\Monyk.Lab.Db.csproj", "{D4EFBF99-3482-4F49-B91D-DBC611F7A764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Lab.Db", "src\Monyk.Lab.Db\Monyk.Lab.Db.csproj", "{D4EFBF99-3482-4F49-B91D-DBC611F7A764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monyk.Common.Db", "src\Monyk.Common.Db\Monyk.Common.Db.csproj", "{6B96A7F5-E16D-4270-9986-45054B8FDA38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monyk.Common.Db", "src\Monyk.Common.Db\Monyk.Common.Db.csproj", "{6B96A7F5-E16D-4270-9986-45054B8FDA38}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,18 +213,6 @@ Global
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x64.Build.0 = Release|Any CPU
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8F53940-7D82-4F1C-8621-4084A7D1DF3D}.Release|x86.Build.0 = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x64.Build.0 = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Debug|x86.Build.0 = Debug|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x64.ActiveCfg = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x64.Build.0 = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x86.ActiveCfg = Release|Any CPU
-		{52DA9560-2AFB-4291-81D3-88D579E6E9A7}.Release|x86.Build.0 = Release|Any CPU
 		{39427276-1AC5-44C6-BA6A-7AAF8C8BD292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39427276-1AC5-44C6-BA6A-7AAF8C8BD292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39427276-1AC5-44C6-BA6A-7AAF8C8BD292}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -280,6 +273,18 @@ Global
 		{6B96A7F5-E16D-4270-9986-45054B8FDA38}.Release|x64.Build.0 = Release|Any CPU
 		{6B96A7F5-E16D-4270-9986-45054B8FDA38}.Release|x86.ActiveCfg = Release|Any CPU
 		{6B96A7F5-E16D-4270-9986-45054B8FDA38}.Release|x86.Build.0 = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|x64.Build.0 = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Debug|x86.Build.0 = Debug|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|x64.ActiveCfg = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|x64.Build.0 = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|x86.ActiveCfg = Release|Any CPU
+		{517E5A3C-CDA3-4010-B3A8-9B578CEF3441}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

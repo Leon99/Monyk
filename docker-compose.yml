@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}monykgroundcontrolmain
     build:
       context: .
-      dockerfile: Monyk.GroundControl.Main/Dockerfile
+      dockerfile: src/Monyk.GroundControl.Main/Dockerfile
     depends_on:
       - rabbitmq
       - postgres
@@ -14,7 +14,7 @@ services:
     image: ${DOCKER_REGISTRY-}monykprobemain
     build:
       context: .
-      dockerfile: Monyk.Probe.Main/Dockerfile
+      dockerfile: src/Monyk.Probe.Main/Dockerfile
     depends_on:
       - rabbitmq
 
@@ -22,7 +22,7 @@ services:
     image: ${DOCKER_REGISTRY-}monyklabmain
     build:
       context: .
-      dockerfile: Monyk.Lab.Main/Dockerfile
+      dockerfile: src/Monyk.Lab.Main/Dockerfile
     depends_on:
       - rabbitmq
 

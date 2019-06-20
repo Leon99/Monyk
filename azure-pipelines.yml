@@ -13,12 +13,12 @@ variables:
 
 steps:
 - pwsh: |
-    dotnet build --configuration $(BuildConfiguration)
+    dotnet build --configuration $(BuildConfiguration) Monyk.sln
   displayName: 'dotnet build $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 - pwsh: |
-    dotnet test --logger trx
+    dotnet test --logger trx Monyk.sln
   displayName: 'dotnet test $(BuildConfiguration)'
   env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
