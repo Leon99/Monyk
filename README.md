@@ -11,8 +11,8 @@ It's like UptimeRobot, only open-source, extensible, self-hosted, cross-platform
 
 ### What exactly can it do?
 
-At the moment, it can check HTTP endpoints and ping hosts from multiple locations.
-Failure alerts are sent to Slack.
+At the moment, it can check HTTP(S) endpoints and ping hosts from multiple locations.
+Alerts can be posted via WebHook (e.g. via Slack).
 
 ### Anything else I need to know before trying it?
 
@@ -28,7 +28,7 @@ Note that all the further commands assume that you have cloned the repository:
 
 ```Shell
 git clone https://github.com/leon99/monyk
-cd monyk/src
+cd monyk
 ```
 
 #### Run using Docker Compose
@@ -39,18 +39,17 @@ cd monyk/src
 
 1. [Install RabbitMQ](https://www.rabbitmq.com/download.html)
 2. Make sure that you have the latest release of [.NET Core SDK](https://dotnet.microsoft.com/download) installed
-3. Run *GroundControl*: `dotnet run --project Monyk.GroundControl.Main`
-4. Run *Probes*: `dotnet run --project Monyk.Lab.Main`
-5. Run *Lab*: `dotnet run --project Monyk.Probe.Main`
+3. Run *GroundControl*: `dotnet run --project src/Monyk.GroundControl.Main`
+4. Run *Probes*: `dotnet run --project src/Monyk.Lab.Main`
+5. Run *Lab*: `dotnet run --project src/Monyk.Probe.Main`
 6. (Optional) [Install Seq](https://docs.getseq.net/docs/getting-started-with-docker) to make use of semantic logging support
 
 Either method will launch Monyk using default setting for development environment:
 
-- database re-created each time *GroundControl* starts
-- a few monitors initially added to help kick-start things
-- *GroundControl* API accessible from browser via https://localhost:42011/swagger
-- *Lab* is not configured to do any result processing
-- all the components are unsecured
+- databases re-created on start-up
+- mock data initially added to the databases to help kick-start things
+- *GroundControl* API is accessible from browser via https://localhost:42113/swagger
+- *Lab* API is accessible from browser via https://localhost:42133/swagger
 
 See [Configuration](#configuration) for details on preparing it to run in the wild.
 
