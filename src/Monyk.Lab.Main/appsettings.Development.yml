@@ -7,7 +7,7 @@ Communicator:
     UserName: guest
     Password: guest
 Lab:
-  GroundControlBaseUrl: http://localhost:42003
+  GroundControlBaseUrl: http://localhost:42110
   Database:
     Type: sqlite
     ConnectionString: Data Source=Lab.db
