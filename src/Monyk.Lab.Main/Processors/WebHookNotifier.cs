@@ -12,7 +12,7 @@ namespace Monyk.Lab.Main.Processors
 {
     public class WebHookNotifierSettings
     {
-        public IEnumerable<string> WebHooks { get; set; }
+        public string Url { get; set; }
     }
 
     public class WebHookNotifier : IResultProcessor
@@ -23,7 +23,7 @@ namespace Monyk.Lab.Main.Processors
         private readonly IGroundControlApi _gcApi;
         private static readonly JsonMediaTypeFormatter Formatter = new JsonMediaTypeFormatter();
 
-        public WebHookNotifier(ILogger<WebHookNotifier> logger, IHttpClientFactory httpClientFactory, WebHookNotifierSettings settings, IGroundControlApi gcApi)
+        public WebHookNotifier(WebHookNotifierSettings settings, ILogger<WebHookNotifier> logger, IHttpClientFactory httpClientFactory, IGroundControlApi gcApi)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
@@ -48,10 +48,7 @@ namespace Monyk.Lab.Main.Processors
 
                 if (monitorEntity != null)
                 {
-                    foreach (var webHook in _settings.WebHooks)
-                    {
-                        await httpClient.PostAsync(webHook, new {text = $"{monitorEntity.Type} check on {monitorEntity.Target} (_{monitorEntity.Description}_) resulted in *{result.Status}*. Details: _{result.Description}_"}, Formatter);
-                    }
+                        await httpClient.PostAsync(_settings.Url, new {text = $"{monitorEntity.Type} check on {monitorEntity.Target} (_{monitorEntity.Description}_) resulted in *{result.Status}*. Details: _{result.Description}_"}, Formatter);
                 }
             }
         }

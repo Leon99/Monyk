@@ -7,7 +7,7 @@ namespace Monyk.Common.Db
 {
     public static class Bootstrapper
     {
-        public static void PrepareDb<T>(IHostingEnvironment env, string sqliteFileName, T db, Action<T> seedAction) where T:DbContext
+        public static void PrepareDb<T>(IHostingEnvironment env, T db, Action<T> seedAction) where T:DbContext
         {
             Directory.SetCurrentDirectory(env.ContentRootPath); // To make it consistent across different hosts
 
@@ -15,6 +15,7 @@ namespace Monyk.Common.Db
             {
                 if (db.Database.IsSqlite())
                 {
+                    var sqliteFileName = db.Database.GetDbConnection().Database;
                     if (!File.Exists(sqliteFileName))
                     {
                         File.CreateText(sqliteFileName).Close();

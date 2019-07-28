@@ -45,15 +45,11 @@ namespace Monyk.Lab.Main
 
             services.AddHttpClient();
 
-            services.AddRabbitMQConnectionFactory(_configuration);
-            services.AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
-            var notifierSettings = _configuration.GetSection("Lab:ResultProcessors:SlackNotifier").Get<WebHookNotifierSettings>();
-            if (notifierSettings != null)
-            {
-                services.AddSingleton(notifierSettings);
-                services.AddSingleton<IResultProcessor, WebHookNotifier>();
-            }
-            services.AddSingleton<IResultProcessor, NullResultProcessor>();
+            services
+                .AddRabbitMQConnectionFactory(_configuration)
+                .AddSingleton<IReceiver<CheckResult>, Transceiver<CheckResult>>();
+            services.AddScoped<ResultDispatcher>();
+            services.AddSingleton<ResultProcessorFactory>();
             services
                 .AddRefitClient<IGroundControlApi>()
                 .ConfigureHttpClient(client => client.BaseAddress = new Uri(_appSettings.GroundControlBaseUrl));

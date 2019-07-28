@@ -33,7 +33,7 @@ namespace Monyk.GroundControl.Main
             using (var scope = _scopeFactory.CreateScope())
             {
                 var db = scope.ServiceProvider.GetService<GroundControlDbContext>();
-                Bootstrapper.PrepareDb(_env, "GroundControl.db", db, SeedDataForDevelopment);
+                Bootstrapper.PrepareDb(_env, db, SeedDataForDevelopment);
                 StartMonitoring(db);
             }
 
@@ -49,7 +49,7 @@ namespace Monyk.GroundControl.Main
                     Target = "https://github.com",
                     Interval = 10,
                     Description = "Happy HTTP monitor",
-                    ActionGroup = "test-group-1"
+                    ActionGroup = "actionGroup-1"
                 },
                 new MonitorEntity
                 {
@@ -57,7 +57,7 @@ namespace Monyk.GroundControl.Main
                     Target = "https://foo.bar",
                     Interval = 55,
                     Description = "Sad HTTP monitor",
-                    ActionGroup = "test-group-1"
+                    ActionGroup = "actionGroup-1"
                 },
                 new MonitorEntity
                 {
@@ -65,7 +65,7 @@ namespace Monyk.GroundControl.Main
                     Target = "github.com",
                     Interval = 55,
                     Description = "Happy Ping monitor",
-                    ActionGroup = "test-group-1"
+                    ActionGroup = "actionGroup-1"
                 },
                 new MonitorEntity
                 {
@@ -73,7 +73,7 @@ namespace Monyk.GroundControl.Main
                     Target = "foo.bar",
                     Interval = 55,
                     Description = "Sad Ping monitor",
-                    ActionGroup = "test-group-2"
+                    ActionGroup = "actionGroup-2"
                 },
                 new MonitorEntity
                 {
@@ -82,7 +82,7 @@ namespace Monyk.GroundControl.Main
                     Interval = 5,
                     IsStopped = true,
                     Description = "Stopped Ping monitor",
-                    ActionGroup = "test-group-2"
+                    ActionGroup = "actionGroup-2"
                 },
                 new MonitorEntity
                 {
@@ -91,7 +91,7 @@ namespace Monyk.GroundControl.Main
                     Interval = 5,
                     IsDeleted = true,
                     Description = "Deleted Ping monitor",
-                    ActionGroup = "test-group-2"
+                    ActionGroup = "actionGroup-3"
                 }
             );
         }
