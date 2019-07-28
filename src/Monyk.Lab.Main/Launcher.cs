@@ -59,34 +59,34 @@ namespace Monyk.Lab.Main
 
         private static void SeedDataForDevelopment(LabDbContext db)
         {
-            var action1 = new ActionEntity
+            var action1 = new ReactionEntity
             {
-                Name = "action-1",
-                Processor = nameof(WebHookNotifier),
-                Settings = JsonConvert.SerializeObject(new WebHookNotifierSettings {Url = "https://hooks.slack.com/services/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"})
+                Name = "reaction-1",
+                ProcessorName = nameof(WebHookNotifier),
+                ProcessorSettings = JsonConvert.SerializeObject(new WebHookNotifierSettings {Url = "https://hooks.slack.com/services/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"})
             };
-            var action2 = new ActionEntity
+            var action2 = new ReactionEntity
             {
-                Name = "action-2",
-                Processor = nameof(WebHookNotifier),
-                Settings = JsonConvert.SerializeObject(new WebHookNotifierSettings {Url = "https://hooks.slack.com/services/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"})
+                Name = "reaction-2",
+                ProcessorName = nameof(WebHookNotifier),
+                ProcessorSettings = JsonConvert.SerializeObject(new WebHookNotifierSettings {Url = "https://hooks.slack.com/services/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"})
             };
-            var action3 = new ActionEntity {Name = "action-3", Processor = nameof(NullResultProcessor)};
-            db.Actions.Add(action1);
-            db.Actions.Add(action2);
-            db.Actions.Add(action3);
-            var actionGroup1 = new ActionGroupEntity
+            var action3 = new ReactionEntity {Name = "reaction-3", ProcessorName = nameof(NullResultProcessor)};
+            db.Reactions.Add(action1);
+            db.Reactions.Add(action2);
+            db.Reactions.Add(action3);
+            var reactionSet1 = new ReactionSetEntity
             {
-                Name = "actionGroup-1", ActionGroupActions = new[] {new ActionGroupActionEntity {Action = action1}, new ActionGroupActionEntity {Action = action2}}
+                Name = "reactionSet-1", ReactionSetReactions = new[] {new ReactionSetReactionEntity {Reaction = action1}, new ReactionSetReactionEntity {Reaction = action2}}
             };
-            var actionGroup2 = new ActionGroupEntity
+            var reactionSet2 = new ReactionSetEntity
             {
-                Name = "actionGroup-2", ActionGroupActions = new[] {new ActionGroupActionEntity {Action = action2}, new ActionGroupActionEntity {Action = action3}}
+                Name = "reactionSet-2", ReactionSetReactions = new[] {new ReactionSetReactionEntity {Reaction = action2}, new ReactionSetReactionEntity {Reaction = action3}}
             };
-            var actionGroup3 = new ActionGroupEntity {Name = "actionGroup-3"};
-            db.ActionGroups.Add(actionGroup1);
-            db.ActionGroups.Add(actionGroup2);
-            db.ActionGroups.Add(actionGroup3);
+            var reactionSet3 = new ReactionSetEntity {Name = "reactionSet-3"};
+            db.ReactionSets.Add(reactionSet1);
+            db.ReactionSets.Add(reactionSet2);
+            db.ReactionSets.Add(reactionSet3);
         }
 
 

@@ -9,23 +9,23 @@ namespace Monyk.Lab.Db
         {
         }
 
-        public DbSet<ActionEntity> Actions { get; set; }
-        public DbSet<ActionGroupEntity> ActionGroups { get; set; }
+        public DbSet<ReactionEntity> Reactions { get; set; }
+        public DbSet<ReactionSetEntity> ReactionSets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ActionGroupActionEntity>()
-                .HasKey(_ => new { _.ActionId, _.ActionGroupId});
+            modelBuilder.Entity<ReactionSetReactionEntity>()
+                .HasKey(_ => new { ReactionId = _.ReactionId, ReactionSetId = _.ReactionSetId});
 
-            modelBuilder.Entity<ActionGroupActionEntity>()
-                .HasOne(_ => _.Action)
-                .WithMany(p => p.ActionGroupActions)
-                .HasForeignKey(pt => pt.ActionId);
+            modelBuilder.Entity<ReactionSetReactionEntity>()
+                .HasOne(_ => _.Reaction)
+                .WithMany(p => p.ReactionSetReactions)
+                .HasForeignKey(pt => pt.ReactionId);
 
-            modelBuilder.Entity<ActionGroupActionEntity>()
-                .HasOne(pt => pt.ActionGroup)
-                .WithMany(t => t.ActionGroupActions)
-                .HasForeignKey(pt => pt.ActionGroupId);
+            modelBuilder.Entity<ReactionSetReactionEntity>()
+                .HasOne(pt => pt.ReactionSet)
+                .WithMany(t => t.ReactionSetReactions)
+                .HasForeignKey(pt => pt.ReactionSetId);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Monyk.GroundControl.Models
         [Required]
         public int Interval { get; set; }
         public string Description { get; set; }
-        public string ActionGroup { get; set; }
+        public string ReactionSet { get; set; }
         public bool IsStopped { get; set; }
         public bool IsDeleted { get; set; }
     }
