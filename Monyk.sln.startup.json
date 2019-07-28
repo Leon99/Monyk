@@ -1,0 +1,26 @@
+/*
+    This is a configuration file for the SwitchStartupProject Visual Studio Extension
+    See https://bitbucket.org/thirteen/switchstartupproject/src/tip/Configuration.md
+*/
+{
+  "Version": 3,
+  "ListAllProjects": false,
+  "MultiProjectConfigurations": {
+    "All - Kestrel - Development": {
+      "Projects": {
+        "Monyk.GroundControl.Main": {
+          "StartProject": true,
+          "ProfileName": "Kestrel - Development"
+        },
+        "Monyk.Probe.Main": {
+          "StartProject": true,
+          "ProfileName": "Kestrel - Development"
+        },
+        "Monyk.Lab.Main": {
+          "StartProject": true,
+          "ProfileName": "Kestrel - Development"
+        }
+      }
+    }
+  }
+}

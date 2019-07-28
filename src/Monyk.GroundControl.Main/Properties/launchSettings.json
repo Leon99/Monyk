@@ -17,9 +17,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Monyk.GroundControl.Main": {
+    "Kestrel - Development": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
