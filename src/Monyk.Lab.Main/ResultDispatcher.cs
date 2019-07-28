@@ -35,23 +35,23 @@ namespace Monyk.Lab.Main
                 throw new ApplicationException($"Unable to retrieve details for monitor {result.MonitorId}");
             }
 
-            var actionGroup = await _db.ActionGroups.AsNoTracking()
-                .Include(ag => ag.ActionGroupActions)
-                    .ThenInclude(aga => aga.Action)
-                .FirstOrDefaultAsync(ag => ag.Name == monitorEntity.ActionGroup);
-            if (actionGroup == null)
+            var reactionSet = await _db.ReactionSets.AsNoTracking()
+                .Include(ag => ag.ReactionSetReactions)
+                    .ThenInclude(aga => aga.Reaction)
+                .FirstOrDefaultAsync(rs => rs.Name == monitorEntity.ReactionSet);
+            if (reactionSet == null)
             {
-                _logger.LogWarning("No action group {0} for monitor {1} was found", monitorEntity.ActionGroup, monitorEntity.Id);
+                _logger.LogWarning("No action group {0} for monitor {1} was found", monitorEntity.ReactionSet, monitorEntity.Id);
                 return;
             }
-            if (actionGroup.ActionGroupActions == null)
+            if (reactionSet.ReactionSetReactions == null)
             {
-                _logger.LogWarning("No actions for action group {0} were found", monitorEntity.ActionGroup);
+                _logger.LogWarning("No actions for action group {0} were found", monitorEntity.ReactionSet);
                 return;
             }
-            foreach (var action in actionGroup.ActionGroupActions.Select(aga => aga.Action))
+            foreach (var reaction in reactionSet.ReactionSetReactions.Select(aga => aga.Reaction))
             {
-                var processor = _factory.Create(action.Processor, action.Settings);
+                var processor = _factory.Create(reaction.ProcessorName, reaction.ProcessorSettings);
                 await processor.RunAsync(result);
             }
         }

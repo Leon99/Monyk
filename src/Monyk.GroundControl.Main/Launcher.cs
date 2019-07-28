@@ -49,7 +49,7 @@ namespace Monyk.GroundControl.Main
                     Target = "https://github.com",
                     Interval = 10,
                     Description = "Happy HTTP monitor",
-                    ActionGroup = "actionGroup-1"
+                    ReactionSet = "reactionSet-1"
                 },
                 new MonitorEntity
                 {
@@ -57,7 +57,7 @@ namespace Monyk.GroundControl.Main
                     Target = "https://foo.bar",
                     Interval = 55,
                     Description = "Sad HTTP monitor",
-                    ActionGroup = "actionGroup-1"
+                    ReactionSet = "reactionSet-1"
                 },
                 new MonitorEntity
                 {
@@ -65,7 +65,7 @@ namespace Monyk.GroundControl.Main
                     Target = "github.com",
                     Interval = 55,
                     Description = "Happy Ping monitor",
-                    ActionGroup = "actionGroup-1"
+                    ReactionSet = "reactionSet-1"
                 },
                 new MonitorEntity
                 {
@@ -73,7 +73,7 @@ namespace Monyk.GroundControl.Main
                     Target = "foo.bar",
                     Interval = 55,
                     Description = "Sad Ping monitor",
-                    ActionGroup = "actionGroup-2"
+                    ReactionSet = "reactionSet-2"
                 },
                 new MonitorEntity
                 {
@@ -82,7 +82,7 @@ namespace Monyk.GroundControl.Main
                     Interval = 5,
                     IsStopped = true,
                     Description = "Stopped Ping monitor",
-                    ActionGroup = "actionGroup-2"
+                    ReactionSet = "reactionSet-2"
                 },
                 new MonitorEntity
                 {
@@ -91,7 +91,7 @@ namespace Monyk.GroundControl.Main
                     Interval = 5,
                     IsDeleted = true,
                     Description = "Deleted Ping monitor",
-                    ActionGroup = "actionGroup-3"
+                    ReactionSet = "reactionSet-3"
                 }
             );
         }
