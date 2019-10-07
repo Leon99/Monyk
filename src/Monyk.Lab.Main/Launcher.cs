@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,20 +17,16 @@ namespace Monyk.Lab.Main
     {
         private readonly ILogger<Launcher> _logger;
         private readonly IReceiver<CheckResult> _receiver;
-        private readonly IEnumerable<IResultProcessor> _processors;
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IHostingEnvironment _env;
-        private readonly ResultDispatcher _dispatcher;
 
         public Launcher(ILogger<Launcher> logger,
             IReceiver<CheckResult> receiver,
-            IEnumerable<IResultProcessor> processors,
             IServiceScopeFactory scopeFactory,
             IHostingEnvironment env)
         {
             _logger = logger;
             _receiver = receiver;
-            _processors = processors;
             _scopeFactory = scopeFactory;
             _env = env;
         }

@@ -3,7 +3,7 @@ using Monyk.GroundControl.Models;
 
 namespace Monyk.GroundControl.Services
 {
-    public static class Mapper
+    internal static class Mapper
     {
         public static CheckRequest Map(MonitorEntity monitorEntity)
         {

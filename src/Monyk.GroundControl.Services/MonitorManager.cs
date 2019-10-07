@@ -69,7 +69,7 @@ namespace Monyk.GroundControl.Services
 
         public async Task CreateMonitor(MonitorEntity monitorEntity)
         {
-            _db.Monitors.Add(monitorEntity);
+            await _db.Monitors.AddAsync(monitorEntity);
             await _db.SaveChangesAsync();
             _scheduler.AddSchedule(monitorEntity);
         }
