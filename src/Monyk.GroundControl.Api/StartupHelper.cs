@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Monyk.Common.Startup;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Monyk.GroundControl.Api
 {
@@ -10,22 +9,21 @@ namespace Monyk.GroundControl.Api
         public static IServiceCollection AddApi(this IServiceCollection services)
         {
             services.AddCustomizedMvc();
-            services.AddSwaggerGen(c =>
+            services.AddOpenApiDocument(settings =>
             {
-                c.SwaggerDoc("v1", new Info {Title = "Monyk Ground Control API", Version = "v1"});
+                settings.Title = "Monyk GroundControl";
             });
             return services;
         }
 
-        public static IApplicationBuilder UseApi(
-            this IApplicationBuilder appBuilder)
+        public static IApplicationBuilder UseApi(this IApplicationBuilder appBuilder)
         {
             appBuilder
                 .UseForwardedHeaders()
                 .UseMvc();
             appBuilder
-                .UseSwagger()
-                .UseSwaggerUI(c => { c.SwaggerEndpoint("./v1/swagger.json", "Monyk Ground Control"); });
+                .UseOpenApi()
+                .UseSwaggerUi3();
 
             return appBuilder;
         }

@@ -13,7 +13,6 @@ using Monyk.Lab.Db;
 using Monyk.Lab.Main.Models;
 using Monyk.Lab.Main.Processors;
 using Refit;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Monyk.Lab.Main
 {
@@ -33,14 +32,6 @@ namespace Monyk.Lab.Main
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomizedMvc();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Title = "Monyk Lab API",
-                    Version = "v1"
-                });
-            });
             services.AddDatabase<LabDbContext>(_appSettings.Database, "Monyk.Lab.Db.Migrations");
 
             services.AddHttpClient();
@@ -70,10 +61,6 @@ namespace Monyk.Lab.Main
             app
                 .UseMvc()
                 .UseMiddleware<SerilogMiddleware>();
-            app
-                .UseSwagger()
-                .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Monyk Lab"); });
-
         }
     }
 }
